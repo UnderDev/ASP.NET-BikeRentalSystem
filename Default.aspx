@@ -32,20 +32,20 @@
             <td rowspan="8">
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
                     AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" 
-                    DataKeyNames="barCode" DataSourceID="SqlDataSourceRental" 
+                    DataKeyNames="BarCode" DataSourceID="SqlDataSourceRental" 
                     EmptyDataText="There are no data records to display." ForeColor="#333333" 
-                    GridLines="None" Height="266px" Width="887px">
+                    Height="266px" Width="887px" HorizontalAlign="Center" 
+                    style="text-align: center; font-size: medium">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="barCode" HeaderText="barCode" ReadOnly="True" 
-                            SortExpression="barCode" />
-                        <asp:BoundField DataField="timesRented" HeaderText="timesRented" 
-                            SortExpression="timesRented" />
-                        <asp:BoundField DataField="timeInout" HeaderText="timeInout" 
-                            SortExpression="timeInout" />
-                        <asp:BoundField DataField="total" HeaderText="total" 
-                            SortExpression="total" />
-                        <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
+                        <asp:BoundField DataField="BarCode" HeaderText="BarCode" ReadOnly="True" 
+                            SortExpression="BarCode" />
+                        <asp:BoundField DataField="TimesRented" HeaderText="TimesRented" 
+                            SortExpression="TimesRented" />
+                        <asp:BoundField DataField="TimeInOut" HeaderText="TimeInOut" 
+                            SortExpression="TimeInOut" />
+                        <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" />
+                        <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
                     </Columns>
                     <EditRowStyle BackColor="#7C6F57" />
                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -98,31 +98,8 @@
         </tr>
     </table>
     <asp:SqlDataSource ID="SqlDataSourceRental" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:LogInConnectionString %>" 
-        DeleteCommand="DELETE FROM [BikeRentalTbl] WHERE [barCode] = @barCode" 
-        InsertCommand="INSERT INTO [BikeRentalTbl] ([barCode], [bikeNum], [timesRented], [timeInout], [total], [date]) VALUES (@barCode, @bikeNum, @timesRented, @timeInout, @total, @date)" 
-        SelectCommand="SELECT [barCode], [timesRented], [timeInout], [total], [date] FROM [BikeRentalTbl]" 
-        
-        UpdateCommand="UPDATE [BikeRentalTbl] SET [bikeNum] = @bikeNum, [timesRented] = @timesRented, [timeInout] = @timeInout, [total] = @total, [date] = @date WHERE [barCode] = @barCode">
-        <DeleteParameters>
-            <asp:Parameter Name="barCode" Type="String" />
-        </DeleteParameters>
-        <InsertParameters>
-            <asp:Parameter Name="barCode" Type="String" />
-            <asp:Parameter Name="bikeNum" Type="Byte" />
-            <asp:Parameter Name="timesRented" Type="Int16" />
-            <asp:Parameter DbType="Time" Name="timeInout" />
-            <asp:Parameter Name="total" Type="Decimal" />
-            <asp:Parameter DbType="Date" Name="date" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="bikeNum" Type="Byte" />
-            <asp:Parameter Name="timesRented" Type="Int16" />
-            <asp:Parameter DbType="Time" Name="timeInout" />
-            <asp:Parameter Name="total" Type="Decimal" />
-            <asp:Parameter DbType="Date" Name="date" />
-            <asp:Parameter Name="barCode" Type="String" />
-        </UpdateParameters>
+        ConnectionString="<%$ ConnectionStrings:BPIConnectionString %>" 
+        SelectCommand="SELECT * FROM [BikeRentalTbl] ORDER BY [BarCode]">
     </asp:SqlDataSource>
     </form>
 </body>

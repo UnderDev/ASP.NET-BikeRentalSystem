@@ -17,7 +17,7 @@ public partial class LogIn : System.Web.UI.Page
     protected void LoginButton_Click(object sender, EventArgs e)
     {
         //new connection
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LogInConnectionString"].ConnectionString);
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BPIConnectionString"].ConnectionString);
        
         //Open the connection
         conn.Open();

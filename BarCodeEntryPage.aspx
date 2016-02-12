@@ -19,7 +19,8 @@
     </div>
 
     <asp:SqlDataSource ID="SqlDataSourceRental" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:LogInConnectionString %>" 
+        ConnectionString="<%$ ConnectionStrings:BPIConnectionString %>" 
+
         DeleteCommand="DELETE FROM [BikeRentalTbl] WHERE [barCode] = @original_barCode AND [bikeNum] = @original_bikeNum AND [timesRented] = @original_timesRented AND (([timeInout] = @original_timeInout) OR ([timeInout] IS NULL AND @original_timeInout IS NULL)) AND [total] = @original_total AND [date] = @original_date" 
         InsertCommand="INSERT INTO [BikeRentalTbl] ([barCode], [bikeNum], [timesRented], [timeInout], [total], [date]) VALUES (@barCode, @bikeNum, @timesRented, @timeInout, @total, @date)" 
         SelectCommand="SELECT [barCode], [bikeNum], [timesRented], [timeInout], [total], [date] FROM [BikeRentalTbl]" 

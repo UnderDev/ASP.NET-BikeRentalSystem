@@ -13,7 +13,7 @@
     <form id="form2" runat="server">
     <p>
         <asp:SqlDataSource ID="SqlDataSourceLogIn" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:LogInConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BPIConnectionString %>" 
             SelectCommand="SELECT * FROM [UserDataTbl]"></asp:SqlDataSource>
     </p>
     <div class="Header1">
