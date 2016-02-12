@@ -1,0 +1,33 @@
+﻿.body 
+{
+    border:10;
+    border-style:solid;
+    vertical-align:middle;
+    width:auto;
+    height:auto;
+}
+.TblStyl1
+{
+     border-style:solid; 
+     border:5;
+}
+
+
+.Header1
+{
+    font-size:x-large;
+    text-align: center;
+}
+
+.centerBox
+{
+    text-align: center;
+    position:fixed; 
+    left:50%; 
+    top:50% 
+}
+
+.btnLogIn
+{
+    width:175px;
+}
