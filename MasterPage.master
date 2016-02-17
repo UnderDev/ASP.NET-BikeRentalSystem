@@ -6,124 +6,34 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .style1
-        {
-            width: 100%;
-            height: 595px;
-        }
-        .style6
-        {
-            height: 562px;
-            text-align: left;
-        }
-        .style13
-        {
-            width: 108px;
-            text-align: center;
-            background-color: #005C2D;
-        }
-        .style16
-        {
-            height: 22px;
-        }
-        .style19
-        {
-            height: 22px;
-            width: 370px;
-        }
-        .style23
-        {
-            width: 370px;
-        }
-        .style24
-        {
-            height: 562px;
-            text-align: left;
-            width: 800px;
-            background-color: #CCFFCC;
-        }
-        .style25
-        {
-            height: 22px;
-            width: 800px;
-        }
-        .style26
-        {
-            width: 370px;
-            height: 55px;
-        }
-        .style27
-        {
-            height: 55px;
-            text-align: center;
-            background-color: #FFFFFF;
-        }
-        .style29
-        {
-            height: 55px;
-            text-align: left;
-        }
-        .style30
-        {
-            height: 22px;
-            width: 108px;
-        }
-    </style>
+    <link href="Styles/StyleSheet.css" rel="stylesheet" type="text/css" />
+    
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="text-align: center">
-        <table class="style1">
-            <tr>
-                <td class="style26">
-                </td>
-                <td class="style27" colspan="2">
-                    <asp:Image ID="Image1" runat="server" Height="130px" ImageUrl="~/Assets/Bike-Park-Ireland.jpg"
-                        Style="text-align: left" Width="1129px" />
-                </td>
-                <td class="style29">
-                </td>
-            </tr>
-            <tr>
-                <td class="style23">
-                    &nbsp;
-                </td>
-                <td class="style13" align="center" valign="top">
-                    <asp:HyperLink ID="hllHome" runat="server" BorderStyle="Solid" BorderWidth="2px"
-                        ForeColor="#FEF200" Height="30px" NavigateUrl="~/Home.aspx" Style="font-weight: 700;
-                        margin-top: 0px" Width="100px">Home</asp:HyperLink>
-                    <br />
-                    <br />
-                    <asp:HyperLink ID="hllBarCodeEntry" runat="server" BorderStyle="Solid" BorderWidth="2px"
-                        ForeColor="#FEF200" Height="47px" NavigateUrl="~/BarCodeEntry.aspx" Style="text-align: center;
-                        font-weight: 700; margin-top: 0px" Width="84px">BarCode Entry</asp:HyperLink>
-                    <br />
-                </td>
-                <td class="style24">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-                </td>
-                <td class="style6">
-                    &nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td class="style19">
-                    &nbsp;
-                </td>
-                <td class="style30">
-                    &nbsp;
-                </td>
-                <td class="style25">
-                    &nbsp;
-                </td>
-                <td class="style16">
-                    &nbsp;
-                </td>
-            </tr>
-        </table>
-    </div>
+    <table class="style0" align="center">
+        <tr>
+            <td class="headerLogo" colspan="2">
+        </tr>
+        <tr>
+            <td class="navBarStyle">
+                <asp:HyperLink ID="hllHome" runat="server" NavigateUrl="~/AdminPages/Home.aspx" 
+                    CssClass="style1">Home</asp:HyperLink>
+                <br />
+                <br />
+                <asp:HyperLink ID="hllBarCodeEntry" runat="server" 
+                    NavigateUrl="~/AdminPages/BarCodeEntry.aspx" CssClass="style2">BarCode Entry</asp:HyperLink>
+            </td>
+            <td class="contentStyle">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+        <tr>
+            <td class="footer" colspan="2">
+            </td>
+        </tr>
+    </table>
     </form>
 </body>
 </html>

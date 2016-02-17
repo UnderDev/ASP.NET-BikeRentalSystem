@@ -1,33 +1,79 @@
-﻿.body 
+﻿.body
 {
-    border:10;
-    border-style:solid;
-    vertical-align:middle;
-    width:auto;
-    height:auto;
+    width: auto;
+    height: auto;
 }
+.style0
+{
+    vertical-align: middle;
+    height: 700px;
+}
+
+.footer
+{
+    height: 50px;
+    background-color: LightGoldenRodYellow;
+    
+    border-bottom:4px solid Black;
+    border-bottom-left-radius:25px;
+    border-bottom-right-radius:25px;
+    border-left:4px solid Black;
+    border-right: 4px solid Black;  
+}
+
+.headerLogo
+{
+    background-position: center top;
+    background-image: url('../Assets/BPI_Logo.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #33CC33;
+    height: 140px;
+    position: inherit;
+    
+    
+    border-top:4px solid Black;
+    border-top-left-radius:25px;
+    border-top-right-radius:25px;
+    border-left:4px solid Black;
+    border-right: 4px solid Black;             
+}
+
+.navBarStyle
+{
+    text-align: center;
+    vertical-align: top;
+    background-color: Green;
+    
+    border-left:4px solid Black;
+ 
+}
+
+.contentStyle
+{
+    width: 900px;
+    height: 300px;
+    background-color: #48B027;
+    text-align:center;
+    
+    vertical-align:top;
+    
+    border-right:4px solid Black;
+}
+
+
+
+.HeaderLogIn
+{
+    text-align:center;
+    
+}
+
 .TblStyl1
 {
-     border-style:solid; 
-     border:5;
-}
-
-
-.Header1
-{
-    font-size:x-large;
+    padding: 5px;
     text-align: center;
-}
-
-.centerBox
-{
-    text-align: center;
-    position:fixed; 
-    left:50%; 
-    top:50% 
-}
-
-.btnLogIn
-{
-    width:175px;
+    border: thin solid #000000;
+    border-spacing: 5px;
+    vertical-align: middle;
 }

@@ -100,7 +100,7 @@ public partial class Default2 : System.Web.UI.Page
 
         //Navigate back to the same Page FIX!!!
         //Server.Transfer("Default.aspx", true);
-        Response.Redirect("BarCodeEntry.aspx", true);
+        Response.Redirect("../AdminPages/BarCodeEntry.aspx", true);
 
     }//End txtBoxBcEntry_TextChanged();
 
