@@ -1,20 +1,34 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LogIn.aspx.cs" Inherits="LogIn" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="LogIn.aspx.cs" Inherits="Default2" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>User LogIn</title>
-   
-    <link href="../Styles/StyleSheet.css" rel="stylesheet" type="text/css" />
 
-</head>
-<body>
-    <form id="form2" runat="server">
+
+.Header1
+{
+    font-size:x-large;
+    text-align: center;
+}
+
+.TblStyl1
+{
+     border-style:solid; 
+     border:5;
+}
+
+
+.btnLogIn
+{
+    width:175px;
+}
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
-        <asp:SqlDataSource ID="SqlDataSourceLogIn" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BPIConnectionString %>" 
-            SelectCommand="SELECT * FROM [UserDataTbl]"></asp:SqlDataSource>
+        <br />
+    </p>
+    <p>
     </p>
     <div class="Header1">
         User Login
@@ -46,9 +60,13 @@
                         Text="Login"/>
                 </td>
             </tr>
-            </div>
-        </table>
+            </table>
 
-    </form>
-</body>
-</html>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+</asp:Content>
+

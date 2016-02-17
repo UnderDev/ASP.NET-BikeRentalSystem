@@ -7,22 +7,18 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 
-public partial class BarCodeEntryPage : System.Web.UI.Page
+public partial class Default2 : System.Web.UI.Page
 {
-    private int _timesRented;
-    private DateTime _timeInOut;
-    private DateTime _date;
-
-
-    private SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BPIConnectionString"].ConnectionString);
-    private SqlCommand _com;
+    private static SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BPIConnectionString"].ConnectionString);
+    private static SqlCommand _com;
 
 
     private Dictionary<string, int> dicRentalPrice = new Dictionary<string, int>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //COULD GET PRICES FROM A FILE, ALOWING FOR PRICE CHANGE
+        txtBoxBcEntry.Focus();
+        //COULD GET PRICES FROM Another DB, ALOWING FOR PRICE CHANGE
         //When loading the page set the rental prices
         dicRentalPrice.Add("HalfDaySatori", 35);
         dicRentalPrice.Add("FullDaySatori", 50);
@@ -36,21 +32,20 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
 
     protected void txtBoxBcEntry_TextChanged(object sender, EventArgs e)
     {
-        int rentCount,hoursRented;
-        double rentCost,total;
+        int rentCount, hoursRented;
+        double rentCost, total;
         string timeInOut;
         DateTime dateTime;
 
         if (IsPostBack)
         {
-
             _conn.Open();
 
             //Gets the Scanned barcode entered into txtBoxBcEntry from the dataBase         
             String barCode = txtBoxBcEntry.Text;
             bool found = get_BarCode(barCode);
 
-            //If The BarCode was found
+            //If The BarCode(pk) was found
             if (found)
             {
 
@@ -63,7 +58,7 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
                     dateTime = Convert.ToDateTime(timeInOut);
 
                     //Gets the amount of hours a bike was rented
-                    hoursRented= getTimeDif(dateTime);
+                    hoursRented = getTimeDif(dateTime);
 
                     //gets how much the Rental Cost of the bike is
                     rentCost = getRentalCost(barCode, hoursRented);
@@ -78,7 +73,6 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
                     set_total(barCode, total);
 
 
-
                     //Gets and or Sets the date in the Database
                     set_Date(barCode);
 
@@ -87,44 +81,56 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
                     rentCount = get_TimesRented(barCode);
                     Set_TimesRented(barCode, rentCount);
 
-
+                    //Used to reset the field in timeInOut
                     timeInOut = "NULL";
                 }
-                //first time the bikes barCode has been scanned in
+                //Bike Has Just Been Rented Out
                 else
                 {
                     //Gets the Current dateTime now 
                     timeInOut = Get_CurrentDateTime();
                 }
 
+                //Update the DB with new timeInOut
                 set_TimeInOut(barCode, timeInOut);
 
-            }
+            }//End if(found)
             _conn.Close();
-        }
-        Server.Transfer("Default.aspx", true);
-    }
+        }//End IsPostBack
 
+        //Navigate back to the same Page FIX!!!
+        //Server.Transfer("Default.aspx", true);
+        Response.Redirect("BarCodeEntry.aspx", true);
+
+    }//End txtBoxBcEntry_TextChanged();
+
+
+    /* Gets the Scanned input from the user and compares it against the dataBase
+     * returning True if the BarCode was found */
     private bool get_BarCode(string barcode)
     {
+        string result = "";
         bool check = false;
-
-        //Get the Data From the database from the BarCode scanned into hte textBox
         String chkBarCode = "Select BarCode from BikeRentalTbl where BarCode  ='" + barcode + "'";
 
         _com = new SqlCommand(chkBarCode, _conn);
 
-        //if the barcode was found in the database temp will be = 1 ********************************* SURROUND IN A TRY CATCH FAILS IF NOT FOUND KEY IN DB
-        string result = Convert.ToString(_com.ExecuteScalar().ToString());
-
-        if (result.Equals(""))
-            check = false;
-        else
+        try
+        {
+            //If the barcode was found in the database result will be = to that barcode else an empty string
+            result = Convert.ToString(_com.ExecuteScalar().ToString());
             check = true;
+        }
+        catch (Exception)
+        {
+            check = false;
+        }
 
         return check;
     }
 
+    /*Updates the DataBase with the Current Date
+     */
     private void set_Date(String barCode)
     {
         String curDate = "UPDATE BikeRentalTbl SET Date= '" + Get_CurrentDateTime() + "' where BarCode ='" + barCode + "'";
@@ -134,8 +140,39 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
     }
 
 
-    /*Gets the TimeInOut from the DataBase
+    /*Gets the Current DateTime in the format "MM/dd/yyyy HH:mm:ss"
+     * and returns it as a string to the caller
      */
+    private String Get_CurrentDateTime()
+    {
+        string dateTimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
+        return dateTimeNow;
+    }
+
+
+    //FIX
+    /*Gets the Time Diffrence Between the date passed in and the Current
+     * Date and returns the diffrence in hours to the caller
+     * 
+     */
+    private int getTimeDif(DateTime DateTimeDb)
+    {
+        int hours;
+
+        DateTime currDateTime = Convert.ToDateTime(Get_CurrentDateTime());/////////////////////////////////not working
+        //Get the Time Diffrence between the Current DateTime and Database DateTime
+
+        System.TimeSpan diff2 = (currDateTime - DateTimeDb);
+
+
+        //Gets The amount of Hours The Bikes Been Rented for     (messes up the time if its accross days)*******************
+        return hours = diff2.Hours;
+    }
+
+
+    /*Gets the TimeInOut data from the DataBase
+  * and returns the result as a string to the caller
+  */
     private String get_TimeInOut(string barCode)
     {
         String time = "Select TimeInOut from BikeRentalTbl where BarCode ='" + barCode + "'";
@@ -146,36 +183,25 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
         return time;
     }
 
-
-    private String Get_CurrentDateTime()
-    {
-        string dateTimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
-        return dateTimeNow;
-    }
-
-
-    private int getTimeDif(DateTime DateTimeDb)
-    {
-        int hours;
-        DateTime currDateTime = Convert.ToDateTime(Get_CurrentDateTime());
-        //Get the Time Diffrence between the Current DateTime and Database DateTime
-        System.TimeSpan diff2 = (currDateTime - DateTimeDb);
-
-        //Gets The amount of Hours The Bikes Been Rented for     (messes up the time if its accross days)*******************
-       return  hours = diff2.Hours;
-    }
-
-
+    //************* FIX METHOD *************
+    /*Updates the dataBase with the Current time or Null(If Bike Was Returned) 
+     */
     private void set_TimeInOut(string barCode, string value)
     {
+        String insetTime;
+        if (value.Equals("NULL"))
+            insetTime = "UPDATE BikeRentalTbl SET TimeInOut= CAST(" + value + " AS DATETIME) where BarCode ='" + barCode + "'";
+        else
+            insetTime = "UPDATE BikeRentalTbl SET TimeInOut= CAST('" + value + "' AS DATETIME) where BarCode ='" + barCode + "'";
 
-        String insetTime = "UPDATE BikeRentalTbl SET TimeInOut= CAST('" + value + "'AS DATETIME) where BarCode ='" + barCode + "'";
         _com = new SqlCommand(insetTime, _conn);
         _com.ExecuteScalar();
     }
 
 
-
+    /*Gets the Total from the dataBase and returns it as a Double
+     * To the caller
+     */
     private double get_Total(String barCode)
     {
         Double rentPrice;
@@ -187,6 +213,8 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
         return rentPrice;
     }
 
+    /*Updates the DataBase with the New Total after a bike has been returned
+     */
     private void set_total(String barCode, double total)
     {
         String insetTotal = "UPDATE BikeRentalTbl SET Total= '" + total + "' where BarCode ='" + barCode + "'";
@@ -194,8 +222,10 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
         _com.ExecuteScalar();
     }
 
-
-
+    //FIX CREATE ANOTHER TABLE WITH BARCODES 4TH DIGIT AS PRIMARY KEY AND COST AS SECONDARY 
+    /*Gets the "RentalCost" based on the the amount of hours the bike was 
+     * Rented out for and returns an int to the caller
+     */
     private int getRentalCost(string barCode, int hours)
     {
         int price = 0;
@@ -241,7 +271,7 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
         return price;
     }
 
-    //Get the model of the bike from the barcodes 4th number
+    //FIX!!Get the model of the bike from the barcodes 4th number
     private string get_BikeModel(string barCode)
     {
         int bikeRentCost = Convert.ToInt32(barCode.Substring(3, 1));
@@ -269,9 +299,8 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
     }
 
 
-
-
-    /* Gets From the DataBase the total amout of times a bike has been rented 
+    /* Gets From the DataBase the total amout of times a bike has been rented,
+     * adds 1 to that number and returns the rentCount to the caller
      */
     private int get_TimesRented(String barCode)
     {
@@ -284,6 +313,8 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
         return rentCount + 1;
     }
 
+    /*Updates the database with the new total num of times a bikes been rented
+     */
     private void Set_TimesRented(string barCode, int rentCount)
     {
         String setRented = "UPDATE BikeRentalTbl SET TimesRented= '" + rentCount + "' where BarCode ='" + barCode + "'";
@@ -292,13 +323,12 @@ public partial class BarCodeEntryPage : System.Web.UI.Page
     }
 
 
+    //NOT USED!
     private void updateSqlCommand(string columnName, string value, string barCode)
     {
         String insetTime = "UPDATE BikeRentalTbl SET '" + columnName + "' = '" + value + "' where BarCode ='" + barCode + "'";
         _com = new SqlCommand(insetTime, _conn);
         _com.ExecuteScalar();
     }
-
-
 
 }

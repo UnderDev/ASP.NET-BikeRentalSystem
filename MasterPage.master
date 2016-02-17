@@ -1,0 +1,125 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            width: 100%;
+            height: 595px;
+        }
+        .style6
+        {
+            height: 562px;
+            text-align: left;
+        }
+        .style13
+        {
+            width: 227px;
+            background-color: #005C2D;
+        }
+        .style16
+        {
+            height: 22px;
+        }
+        .style19
+        {
+            height: 22px;
+            width: 370px;
+        }
+        .style21
+        {
+            height: 22px;
+            width: 227px;
+        }
+        .style23
+        {
+            width: 370px;
+        }
+        .style24
+        {
+            height: 562px;
+            text-align: left;
+            width: 809px;
+        }
+        .style25
+        {
+            height: 22px;
+            width: 809px;
+        }
+        .style26
+        {
+            width: 370px;
+            height: 55px;
+        }
+        .style27
+        {
+            height: 55px;
+            text-align: left;
+            background-color: #FFFFFF;
+        }
+        .style29
+        {
+            height: 55px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="text-align: center">
+        <table class="style1">
+            <tr>
+                <td class="style26">
+                </td>
+                <td class="style27" colspan="2">
+                    <asp:Image ID="Image1" runat="server" Height="130px" 
+                        ImageUrl="~/Assets/Bike-Park-Ireland.jpg" style="text-align: left" 
+                        Width="1037px" />
+                </td>
+                <td class="style29">
+                </td>
+            </tr>
+            <tr>
+                <td class="style23">
+                    &nbsp;</td>
+                <td class="style13">
+                    <asp:HyperLink ID="hllHome" runat="server" BorderStyle="Solid" 
+                        BorderWidth="2px" ForeColor="#FEF200" Height="30px" NavigateUrl="~/Home.aspx" 
+                        style="text-align: center; font-weight: 700; margin-top: 0px" Width="100px">Home</asp:HyperLink>
+                    <br />
+                    <br />
+                    <asp:HyperLink ID="hllBarCodeEntry" runat="server" BorderStyle="Solid" 
+                        BorderWidth="2px" ForeColor="#FEF200" Height="47px" 
+                        NavigateUrl="~/BarCodeEntry.aspx" 
+                        style="text-align: center; font-weight: 700; margin-top: 0px" Width="100px">BarCode Entry</asp:HyperLink>
+                    <br />
+                </td>
+                <td class="style24">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                </td>
+                <td class="style6">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="style19">
+                    &nbsp;</td>
+                <td class="style21">
+                    &nbsp;</td>
+                <td class="style25">
+                    &nbsp;</td>
+                <td class="style16">
+                    &nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>
