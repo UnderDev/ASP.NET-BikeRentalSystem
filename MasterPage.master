@@ -1,11 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <asp:ContentPlaceHolder id="head" runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
         .style1
@@ -20,7 +19,8 @@
         }
         .style13
         {
-            width: 227px;
+            width: 108px;
+            text-align: center;
             background-color: #005C2D;
         }
         .style16
@@ -32,11 +32,6 @@
             height: 22px;
             width: 370px;
         }
-        .style21
-        {
-            height: 22px;
-            width: 227px;
-        }
         .style23
         {
             width: 370px;
@@ -45,12 +40,13 @@
         {
             height: 562px;
             text-align: left;
-            width: 809px;
+            width: 800px;
+            background-color: #CCFFCC;
         }
         .style25
         {
             height: 22px;
-            width: 809px;
+            width: 800px;
         }
         .style26
         {
@@ -60,13 +56,18 @@
         .style27
         {
             height: 55px;
-            text-align: left;
+            text-align: center;
             background-color: #FFFFFF;
         }
         .style29
         {
             height: 55px;
             text-align: left;
+        }
+        .style30
+        {
+            height: 22px;
+            width: 108px;
         }
     </style>
 </head>
@@ -78,45 +79,48 @@
                 <td class="style26">
                 </td>
                 <td class="style27" colspan="2">
-                    <asp:Image ID="Image1" runat="server" Height="130px" 
-                        ImageUrl="~/Assets/Bike-Park-Ireland.jpg" style="text-align: left" 
-                        Width="1037px" />
+                    <asp:Image ID="Image1" runat="server" Height="130px" ImageUrl="~/Assets/Bike-Park-Ireland.jpg"
+                        Style="text-align: left" Width="1129px" />
                 </td>
                 <td class="style29">
                 </td>
             </tr>
             <tr>
                 <td class="style23">
-                    &nbsp;</td>
-                <td class="style13">
-                    <asp:HyperLink ID="hllHome" runat="server" BorderStyle="Solid" 
-                        BorderWidth="2px" ForeColor="#FEF200" Height="30px" NavigateUrl="~/Home.aspx" 
-                        style="text-align: center; font-weight: 700; margin-top: 0px" Width="100px">Home</asp:HyperLink>
+                    &nbsp;
+                </td>
+                <td class="style13" align="center" valign="top">
+                    <asp:HyperLink ID="hllHome" runat="server" BorderStyle="Solid" BorderWidth="2px"
+                        ForeColor="#FEF200" Height="30px" NavigateUrl="~/Home.aspx" Style="font-weight: 700;
+                        margin-top: 0px" Width="100px">Home</asp:HyperLink>
                     <br />
                     <br />
-                    <asp:HyperLink ID="hllBarCodeEntry" runat="server" BorderStyle="Solid" 
-                        BorderWidth="2px" ForeColor="#FEF200" Height="47px" 
-                        NavigateUrl="~/BarCodeEntry.aspx" 
-                        style="text-align: center; font-weight: 700; margin-top: 0px" Width="100px">BarCode Entry</asp:HyperLink>
+                    <asp:HyperLink ID="hllBarCodeEntry" runat="server" BorderStyle="Solid" BorderWidth="2px"
+                        ForeColor="#FEF200" Height="47px" NavigateUrl="~/BarCodeEntry.aspx" Style="text-align: center;
+                        font-weight: 700; margin-top: 0px" Width="84px">BarCode Entry</asp:HyperLink>
                     <br />
                 </td>
                 <td class="style24">
-                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
                 </td>
                 <td class="style6">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             </tr>
             <tr>
                 <td class="style19">
-                    &nbsp;</td>
-                <td class="style21">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
+                <td class="style30">
+                    &nbsp;
+                </td>
                 <td class="style25">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
                 <td class="style16">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             </tr>
         </table>
     </div>

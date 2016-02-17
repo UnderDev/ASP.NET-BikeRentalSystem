@@ -146,20 +146,17 @@ public partial class Default2 : System.Web.UI.Page
     private String Get_CurrentDateTime()
     {
         string dateTimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
+
         return dateTimeNow;
     }
 
 
     //FIX
-    /*Gets the Time Diffrence Between the date passed in and the Current
-     * Date and returns the diffrence in hours to the caller
-     * 
-     */
     private int getTimeDif(DateTime DateTimeDb)
     {
         int hours;
 
-        DateTime currDateTime = Convert.ToDateTime(Get_CurrentDateTime());/////////////////////////////////not working
+        DateTime currDateTime = (DateTime.Now);
         //Get the Time Diffrence between the Current DateTime and Database DateTime
 
         System.TimeSpan diff2 = (currDateTime - DateTimeDb);
