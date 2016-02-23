@@ -1,79 +1,163 @@
-﻿.body
+﻿.BackGround
 {
-    width: auto;
+    background-color: #E9F9FA;
+}
+
+.WebSiteBorder
+{
+    border: medium solid #000000;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.Banner
+{
+    width: inherit;
+    height: inherit;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.Header
+{
+    background-color: #EAFFEB;
     height: auto;
-}
-.style0
-{
-    vertical-align: middle;
-    height: 700px;
+    border-bottom: thin solid #996633;
+    border-top: thin solid #996633;
 }
 
-.footer
-{
-    height: 50px;
-    background-color: LightGoldenRodYellow;
-    
-    border-bottom:4px solid Black;
-    border-bottom-left-radius:25px;
-    border-bottom-right-radius:25px;
-    border-left:4px solid Black;
-    border-right: 4px solid Black;  
-}
 
-.headerLogo
+
+
+.BannerBorder
 {
-    background-position: center top;
-    background-image: url('../Assets/BPI_Logo.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-color: #33CC33;
     height: 140px;
-    position: inherit;
-    
-    
-    border-top:4px solid Black;
-    border-top-left-radius:25px;
-    border-top-right-radius:25px;
-    border-left:4px solid Black;
-    border-right: 4px solid Black;             
+    width: inherit;
 }
 
-.navBarStyle
+.RightBoarder
 {
-    text-align: center;
+    border-right: medium solid #bcc0cc;
+    border-right-width: 35px;
+}
+
+.Footer
+{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #267326;
+    height: 50px;
+}
+
+.NavBarLeft
+{
+    width: 200px;
+    height: 650px;
+    border-right: thin solid #996633;
+    background-color: #EAFFEB;
     vertical-align: top;
-    background-color: Green;
-    
-    border-left:4px solid Black;
- 
 }
 
-.contentStyle
+.ContentPlaceHolder li
 {
-    width: 900px;
-    height: 300px;
-    background-color: #48B027;
-    text-align:center;
-    
-    vertical-align:top;
-    
-    border-right:4px solid Black;
-}
-
-
-
-.HeaderLogIn
-{
-    text-align:center;
-    
-}
-
-.TblStyl1
-{
-    padding: 5px;
+    vertical-align: top;
     text-align: center;
-    border: thin solid #000000;
-    border-spacing: 5px;
-    vertical-align: middle;
+    width: auto;
+    background-color: GhostWhite;
+}
+
+.TableStyle
+{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-collapse: collapse;
+}
+
+.box
+{
+    width: 280px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    background: green;
+    border-radius: 7px;
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
+}
+
+.content
+{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px 0px;
+}
+
+.content h1
+{
+    font-size: 24px;
+    font-weight: 400;
+    color: #FFBF00;
+    letter-spacing: 0.125em;
+    float: left;
+}
+
+.TxtBoxInput
+{
+    margin: 10px auto;
+    padding: 10px;
+    background: #DDDDDD;
+    border: none;
+    box-shadow: 0px 1px 0px 0px #111;
+    border-radius: 5px;
+    outline: none;
+    color: #D78100;
+    font-weight: bolder;
+    letter-spacing: 0.125em;
+    text-align: center;
+    margin-left: 15px;
+    font-size: medium;
+}
+
+.btn
+{
+    margin: 10px auto;
+    padding: 10px;
+    background: #83541B;
+    border: none;
+    box-shadow: 0px 1px 0px 0px #111;
+    border-radius: 10px;
+    outline: none;
+    color: #FFBF00;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn:hover
+{
+    background: #FFBF00;
+    color: #333;
+}
+
+.btn:active
+{
+    background: #FACC2E;
+    color: #333;
+}
+
+.CenterAll
+{
+    margin: auto;
+}
+
+.XlrgText li
+{
+    font-size: x-large;
 }
