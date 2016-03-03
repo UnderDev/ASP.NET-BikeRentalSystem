@@ -65,7 +65,12 @@
                                             <asp:MenuItem NavigateUrl="~/AdminPages/Home.aspx" Text="Home" Value="Home"></asp:MenuItem>
                                             <asp:MenuItem NavigateUrl="~/AdminPages/BarCodeEntry.aspx" Text="Barcode Entry" Value="Barcode Entry">
                                             </asp:MenuItem>
+                                            <asp:MenuItem Text="Add New Bike" Value="Add New Bike"></asp:MenuItem>
+                                            <asp:MenuItem Text="Remove Bike" Value="Remove Bike"></asp:MenuItem>
+                                            <asp:MenuItem Text="New Item" Value="New Item"></asp:MenuItem>
                                         </Items>
+
+<StaticMenuItemStyle VerticalPadding="10px"></StaticMenuItemStyle>
                                     </asp:Menu>
                                 </td>
                             </tr>

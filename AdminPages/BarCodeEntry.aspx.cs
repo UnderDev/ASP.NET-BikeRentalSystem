@@ -13,21 +13,9 @@ public partial class Default2 : System.Web.UI.Page
     private static SqlCommand _com;
 
 
-    private Dictionary<string, int> dicRentalPrice = new Dictionary<string, int>();
-
     protected void Page_Load(object sender, EventArgs e)
     {
         txtBoxBcEntry.Focus();
-        //COULD GET PRICES FROM Another DB, ALOWING FOR PRICE CHANGE
-        //When loading the page set the rental prices
-        dicRentalPrice.Add("HalfDaySatori", 35);
-        dicRentalPrice.Add("FullDaySatori", 50);
-
-        dicRentalPrice.Add("HalfDayDh", 45);
-        dicRentalPrice.Add("FullDayDh", 65);
-
-        dicRentalPrice.Add("HalfDayKids", 20);
-        dicRentalPrice.Add("FullDayKids", 30);
     }
 
     protected void txtBoxBcEntry_TextChanged(object sender, EventArgs e)
@@ -60,7 +48,7 @@ public partial class Default2 : System.Web.UI.Page
                     //Gets the amount of hours a bike was rented
                     hoursRented = getTimeDif(dateTime);
 
-                    //gets how much the Rental Cost of the bike is
+                    //Gets how much the Rental Cost of the bike is
                     rentCost = getRentalCost(barCode, hoursRented);
 
                     //Get the total from the dataBase
@@ -150,7 +138,6 @@ public partial class Default2 : System.Web.UI.Page
         return dateTimeNow;
     }
 
-
     //FIX
     private int getTimeDif(DateTime DateTimeDb)
     {
@@ -160,7 +147,6 @@ public partial class Default2 : System.Web.UI.Page
         //Get the Time Diffrence between the Current DateTime and Database DateTime
 
         System.TimeSpan diff2 = (currDateTime - DateTimeDb);
-
 
         //Gets The amount of Hours The Bikes Been Rented for     (messes up the time if its accross days)*******************
         return hours = diff2.Hours;
@@ -219,82 +205,27 @@ public partial class Default2 : System.Web.UI.Page
         _com.ExecuteScalar();
     }
 
-    //FIX CREATE ANOTHER TABLE WITH BARCODES 4TH DIGIT AS PRIMARY KEY AND COST AS SECONDARY 
+
     /*Gets the "RentalCost" based on the the amount of hours the bike was 
      * Rented out for and returns an int to the caller
      */
     private int getRentalCost(string barCode, int hours)
     {
         int price = 0;
-        string BikeModel = get_BikeModel(barCode);
-
+        string priceQuere="";
+        int bikeModelNum = Convert.ToInt32(barCode.Substring(3, 1));
 
         //if the Time dif is greater than 1 hour rented and < than 5 hours its a Half Day
         if (hours >= 0 && hours <= 5)
-        {
-            //If The barcode read in starts with "sat" the bikes a satori
-            if (BikeModel.Equals("Satori-Process"))
-            {
-                //get the cost from the Dictonary depending on the Barcode
-                dicRentalPrice.TryGetValue("HalfDaySatori", out price);
-            }
-            else if (BikeModel.Equals("HalfPrecept"))
-            {
-                dicRentalPrice.TryGetValue("HalfDayDH", out price);
-            }
-            else if (BikeModel.Equals("HalfDayKids"))
-            {
-                dicRentalPrice.TryGetValue("FullDayDh", out price);
-            }
-
-        }
+            priceQuere = "Select HalfDay from BikeCostTbl where Id ='" + bikeModelNum + "'";
         else if (hours >= 1 && hours > 5)
-        {
-            //If The barcode read in starts with "sat" the bikes a satori
-            if (BikeModel.Equals("Satori-Process"))
-            {
-                //get the cost from the Dictonary depending on the Barcode
-                dicRentalPrice.TryGetValue("FullDaySatori", out price);
-            }
-            else if (BikeModel.Equals("Precept"))
-            {
-                dicRentalPrice.TryGetValue("FullDayKids", out price);
-            }
-            else if (BikeModel.Equals("Kids"))
-            {
-                dicRentalPrice.TryGetValue("FullDayDh", out price);
-            }
-        }
+            priceQuere = "Select FullDay from BikeCostTbl where Id ='" + bikeModelNum + "'";
+
+        _com = new SqlCommand(priceQuere, _conn);
+        price = Convert.ToInt16(_com.ExecuteScalar());
+
         return price;
     }
-
-    //FIX!!Get the model of the bike from the barcodes 4th number
-    private string get_BikeModel(string barCode)
-    {
-        int bikeRentCost = Convert.ToInt32(barCode.Substring(3, 1));
-        string BikeModel = "";
-
-        switch (bikeRentCost)
-        {
-            case 1:
-            case 2:
-            case 3:
-                BikeModel = "Satori-Process";
-                break;
-
-            case 4:
-            case 5:
-            case 6:
-                BikeModel = "Precept";
-                break;
-
-            case 7:
-                BikeModel = "Kids";
-                break;
-        }
-        return BikeModel;
-    }
-
 
     /* Gets From the DataBase the total amout of times a bike has been rented,
      * adds 1 to that number and returns the rentCount to the caller
@@ -316,15 +247,6 @@ public partial class Default2 : System.Web.UI.Page
     {
         String setRented = "UPDATE BikeRentalTbl SET TimesRented= '" + rentCount + "' where BarCode ='" + barCode + "'";
         _com = new SqlCommand(setRented, _conn);
-        _com.ExecuteScalar();
-    }
-
-
-    //NOT USED!
-    private void updateSqlCommand(string columnName, string value, string barCode)
-    {
-        String insetTime = "UPDATE BikeRentalTbl SET '" + columnName + "' = '" + value + "' where BarCode ='" + barCode + "'";
-        _com = new SqlCommand(insetTime, _conn);
         _com.ExecuteScalar();
     }
 
