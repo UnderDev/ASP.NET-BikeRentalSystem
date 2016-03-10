@@ -28,20 +28,32 @@ public partial class Default2 : System.Web.UI.Page
         Menu itemClicked = (Menu)sender;
         string path = Convert.ToString(itemClicked.SelectedItem.ValuePath);
 
+        //itemClicked.SelectedItem.Value is the Value of the menu item clicked, which  set up as 1-7
         string value = itemClicked.SelectedItem.Value;
 
         querey= GetMenuItemClicked(value);
 
         //select statment baseed on the menu click 
         da = new SqlDataAdapter(querey, _conn);
-       
+    
         da.Fill(ds);//Fill the DataSet from the DataAdapter
 
         //Cache the DataSet for use later on in Pagging/Sorting
         Cache["Data"] = ds;
 
         GridView2.DataSource = ds;
-        GridView2.DataBind();
+
+        //BoundField Col1 = new BoundField();
+        //Col1.HeaderText = "Date";
+        //Col1.DataField = "Date";
+        //Col1.DataFormatString = "{0:D}";
+        //BoundField Col2 = new BoundField();
+        //Col2.DataField = "Total";
+        //Col2.DataFormatString = "{0:c}";
+        //GridView2.Columns.Add(Col1);
+        ////grdTest.Columns.Add(Col2);
+        //GridView2.Columns.Add(Col2);
+        GridView2.DataBind();      
     }
 
 
@@ -56,7 +68,7 @@ public partial class Default2 : System.Web.UI.Page
             case "1": return "spGetBikeRental";
 
             case "2": return "spGetCurrAvail";
-            case "2.1": return "SELECT * FROM BikeRentalTbl where TimeInOut IS NULL";
+            case "2.1": return "";
             case "2.2": return "";
             case "2.3": return "";
             case "2.4": return "";
@@ -67,14 +79,15 @@ public partial class Default2 : System.Web.UI.Page
             case "3.3": return "";
             case "3.4": return "";
 
-            case "4": return "";
+            case "4": return "spGetMostPopular";
             case "4.1": return "";
             case "4.2": return "";
             case "4.3": return "";
             case "4.4": return "";
 
             case "5": return "";
-            case "6": return "";
+
+            case "6": return "spGetIncome";
             case "7": return "";
 
             default: return "default";
