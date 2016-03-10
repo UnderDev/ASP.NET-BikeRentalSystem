@@ -14,11 +14,11 @@ public partial class Default2 : System.Web.UI.Page
     private SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BPIConnectionString"].ConnectionString);
     private DataSet ds = new DataSet();
     private SqlDataAdapter da;
-    private String querey="";
+    private String querey = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+
     }
 
     protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
@@ -31,11 +31,14 @@ public partial class Default2 : System.Web.UI.Page
         //itemClicked.SelectedItem.Value is the Value of the menu item clicked, which  set up as 1-7
         string value = itemClicked.SelectedItem.Value;
 
-        querey= GetMenuItemClicked(value);
+        querey = GetMenuItemClicked(value);
+
+        DisplayMenuClikedMessage(value);
+
 
         //select statment baseed on the menu click 
         da = new SqlDataAdapter(querey, _conn);
-    
+
         da.Fill(ds);//Fill the DataSet from the DataAdapter
 
         //Cache the DataSet for use later on in Pagging/Sorting
@@ -53,7 +56,43 @@ public partial class Default2 : System.Web.UI.Page
         //GridView2.Columns.Add(Col1);
         ////grdTest.Columns.Add(Col2);
         //GridView2.Columns.Add(Col2);
-        GridView2.DataBind();      
+        GridView2.DataBind();
+    }
+
+    /* Switches on a String(menu.SelectedItem.Value) and returns a message based on what the user
+     * clicked on the menu from the homepage
+    */
+    private string DisplayMenuClikedMessage(string value)
+    {
+        switch (value)
+        {
+            case "1": return lblUsrSelected.Text = "Full DataBase";
+
+            case "2": return lblUsrSelected.Text = "Currently Available Bikes To Rent";
+            case "2.1": return lblUsrSelected.Text = "Currently Available Satori Bikes To Rent";
+            case "2.2": return lblUsrSelected.Text = "Currently Available Process Bikes To Rent";
+            case "2.3": return lblUsrSelected.Text = "Currently Available DownHill Bikes To Rent";
+            case "2.4": return lblUsrSelected.Text = "Currently Available Kids Bikes To Rent";
+
+            case "3": return lblUsrSelected.Text = "Currently Rented Bikes";
+            case "3.1": return lblUsrSelected.Text = "Currently Rented Satori Bikes";
+            case "3.2": return lblUsrSelected.Text = "Currently Rented Process Bikes";
+            case "3.3": return lblUsrSelected.Text = "Currently Rented DownHill Bikes";
+            case "3.4": return lblUsrSelected.Text = "Currently Rented Kids Bikes";
+
+            case "4": return lblUsrSelected.Text = "Most Popular Bikes Rented";
+            case "4.1": return "";//spGetMostPopularSatori
+            case "4.2": return "";//spGetMostPopularProcess
+            case "4.3": return "";//spGetMostPopularDh
+            case "4.4": return "";//spGetMostPopularKids
+
+            case "5": return "";//Out of Action
+
+            case "6": return lblUsrSelected.Text = "Displaying Income Per Bike Model and Total from Rentals";
+            case "7": return "";
+
+            default: return "Default";
+        }
     }
 
 
@@ -68,42 +107,42 @@ public partial class Default2 : System.Web.UI.Page
             case "1": return "spGetBikeRental";
 
             case "2": return "spGetCurrAvail";
-            case "2.1": return "";
-            case "2.2": return "";
-            case "2.3": return "";
-            case "2.4": return "";
+            case "2.1": return "spGetCurrAvailSatori";
+            case "2.2": return "";//spGetCurrAvailProcess
+            case "2.3": return "spGetCurrAvailDh";
+            case "2.4": return "spGetCurrAvailKids";
 
             case "3": return "spGetCurrRented";
-            case "3.1": return "";
-            case "3.2": return "";
-            case "3.3": return "";
-            case "3.4": return "";
+            case "3.1": return "spGetCurrRentedSatori";
+            case "3.2": return "";//spGetCurrRentedProcess
+            case "3.3": return "spGetCurrRentedDh";
+            case "3.4": return "spGetCurrRentedKids";
 
             case "4": return "spGetMostPopular";
-            case "4.1": return "";
-            case "4.2": return "";
-            case "4.3": return "";
-            case "4.4": return "";
+            case "4.1": return "";//spGetMostPopularSatori
+            case "4.2": return "";//spGetMostPopularProcess
+            case "4.3": return "";//spGetMostPopularDh
+            case "4.4": return "";//spGetMostPopularKids
 
-            case "5": return "";
+            case "5": return "";//Out of Action
 
             case "6": return "spGetIncome";
             case "7": return "";
 
-            default: return "default";
+            default: return "spGetBikeRental";
         }
     }
 
 
-
+    /*Sets up the Grid on the homepage at runtime with the following settings in the method
+     */
     private void BuildGridSettings()
     {
         GridView2.PageSize = 10;
         GridView2.AllowPaging = true;
         GridView2.PageIndex = 0;
-        GridView2.AllowSorting = true;
+        GridView2.AllowSorting = false;
     }
-
 
 
     /* Gets the selected index(page Num) and sets the grids pageIndex to that.

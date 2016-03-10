@@ -92,7 +92,7 @@
     <asp:SqlDataSource ID="SqlDataSourceRental" runat="server" ConnectionString="<%$ ConnectionStrings:BPIConnectionString %>"
         SelectCommand="SELECT [BarCode], [TimesRented], [TimeInOut], [Total], [Date] FROM [BikeRentalTbl]">
     </asp:SqlDataSource>
-
+    <asp:Label ID="lblUsrSelected" runat="server" CssClass="GridLbl"></asp:Label>
     <div>
         <asp:GridView ID="GridView2" runat="server" 
             onpageindexchanging="GridView2_PageIndexChanging" CssClass="GridViewCss">

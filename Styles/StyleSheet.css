@@ -30,6 +30,18 @@
 }
 
 
+.GridLbl
+{
+    font-family: 'Tekton Pro Ext';
+    font-size: x-large;
+    text-transform: capitalize;
+    font-variant: small-caps;
+    margin-bottom: 5px;
+}
+
+
+
+
 
 
 .BannerBorder
@@ -173,6 +185,9 @@
 
 
 
+
+
+
 .GridViewCss
 {
     margin-left: auto;
@@ -182,12 +197,23 @@
 
 .GridViewCss th
 {
-    background-color:Pink;
+    background-color: #83541B;
+    font-family: 'Tekton Pro Ext';
+    font-size: large;
+    text-transform: capitalize;
+    font-variant: small-caps;
+    color: #FFFFFF;
 }
 
-
-
-
+.GridViewCss td
+{
+    background-color: #F5E7CD;
+    font-family: 'Tekton Pro Ext';
+    font-size: large;
+    text-transform: capitalize;
+    font-variant: small-caps;
+    color: #267326;
+}
 
 
 
