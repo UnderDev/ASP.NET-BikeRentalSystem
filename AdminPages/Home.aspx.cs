@@ -88,7 +88,7 @@ public partial class Default2 : System.Web.UI.Page
 
             case "5": return "";//Out of Action
 
-            case "6": return lblUsrSelected.Text = "Displaying Income Per Bike Model and Total from Rentals";
+            case "6": return lblUsrSelected.Text = "Income Per Bike Model and Total from Rentals";
             case "7": return "";
 
             default: return "Default";
