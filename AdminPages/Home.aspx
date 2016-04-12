@@ -16,23 +16,23 @@
                 <asp:MenuItem Selected="True" Text="Show DataBase" Value="1">
                 </asp:MenuItem>
                 <asp:MenuItem Text="Bike Info" Value="Bike Info" Selectable="False">
-                    <asp:MenuItem Text="Currently Available" Value="2">
+                        <asp:MenuItem Text="Currently Available" Value="2">
                         <asp:MenuItem Text="Satori" Value="2.1"></asp:MenuItem>
-                        <asp:MenuItem Text="Process" Value="2.2"></asp:MenuItem>
-                        <asp:MenuItem Text="Precept 200" Value="2.3"></asp:MenuItem>
-                        <asp:MenuItem Text="Kids" Value="2.4"></asp:MenuItem>
+                        <%--<asp:MenuItem Text="Process" Value="2.2"></asp:MenuItem>--%>
+                        <asp:MenuItem Text="Precept 200" Value="2.2"></asp:MenuItem>
+                        <asp:MenuItem Text="Kids" Value="2.3"></asp:MenuItem>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Currently Rented" Value="3">
                         <asp:MenuItem Text="Satori" Value="3.1"></asp:MenuItem>
-                        <asp:MenuItem Text="Process" Value="3.2"></asp:MenuItem>
-                        <asp:MenuItem Text="Precept 200" Value="3.3"></asp:MenuItem>
-                        <asp:MenuItem Text="Kids" Value="3.4"></asp:MenuItem>
+                        <%--<asp:MenuItem Text="Process" Value="3.2"></asp:MenuItem>--%>
+                        <asp:MenuItem Text="Precept 200" Value="3.2"></asp:MenuItem>
+                        <asp:MenuItem Text="Kids" Value="3.3"></asp:MenuItem>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Most Popular" Value="4">
                         <asp:MenuItem Text="Satori" Value="4.1"></asp:MenuItem>
-                        <asp:MenuItem Text="Process" Value="4.2"></asp:MenuItem>
-                        <asp:MenuItem Text="Precept 200" Value="4.3"></asp:MenuItem>
-                        <asp:MenuItem Text="Kids" Value="4.4"></asp:MenuItem>
+                        <%--<asp:MenuItem Text="Process" Value="4.2"></asp:MenuItem>--%>
+                        <asp:MenuItem Text="Precept 200" Value="4.2"></asp:MenuItem>
+                        <%--<asp:MenuItem Text="Kids" Value="4.3"></asp:MenuItem>--%>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Out Of Action" Value="5"></asp:MenuItem>
                 </asp:MenuItem>
@@ -58,19 +58,19 @@
                 <asp:MenuItem Text="Bike Info" Value="Bike Info" Selectable="False">
                     <asp:MenuItem Text="Currently Available" Value="Currently Available">
                         <asp:MenuItem Text="Satori" Value="Satori"></asp:MenuItem>
-                        <asp:MenuItem Text="Process" Value="Process"></asp:MenuItem>
+                        <%--<asp:MenuItem Text="Process" Value="Process"></asp:MenuItem>
                         <asp:MenuItem Text="Precept 200" Value="Precept 200"></asp:MenuItem>
                         <asp:MenuItem Text="Kids" Value="Kids"></asp:MenuItem>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Currently Rented" Value="Currently Rented">
                         <asp:MenuItem Text="Satori" Value="Satori"></asp:MenuItem>
-                        <asp:MenuItem Text="Process" Value="Process"></asp:MenuItem>
+                        <%--<asp:MenuItem Text="Process" Value="Process"></asp:MenuItem>
                         <asp:MenuItem Text="Precept 200" Value="Precept 200"></asp:MenuItem>
                         <asp:MenuItem Text="Kids" Value="Kids"></asp:MenuItem>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Most Popular" Value="Most Popular">
                         <asp:MenuItem Text="Satori" Value="Satori"></asp:MenuItem>
-                        <asp:MenuItem Text="Process" Value="Process"></asp:MenuItem>
+                        <%--<asp:MenuItem Text="Process" Value="Process"></asp:MenuItem>
                         <asp:MenuItem Text="Precept 200" Value="Precept 200"></asp:MenuItem>
                         <asp:MenuItem Text="Kids" Value="Kids"></asp:MenuItem>
                     </asp:MenuItem>
@@ -85,7 +85,6 @@
             <StaticMenuItemStyle CssClass="MenuBoxDesign" />
         </asp:Menu>--%>
    
-
     <br />
 
 

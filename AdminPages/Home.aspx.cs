@@ -70,21 +70,21 @@ public partial class Default2 : System.Web.UI.Page
 
             case "2": return lblUsrSelected.Text = "Currently Available Bikes To Rent";
             case "2.1": return lblUsrSelected.Text = "Currently Available Satori Bikes To Rent";
-            case "2.2": return lblUsrSelected.Text = "Currently Available Process Bikes To Rent";
-            case "2.3": return lblUsrSelected.Text = "Currently Available DownHill Bikes To Rent";
-            case "2.4": return lblUsrSelected.Text = "Currently Available Kids Bikes To Rent";
+            //case "2.2": return lblUsrSelected.Text = "Currently Available Process Bikes To Rent";
+            case "2.2": return lblUsrSelected.Text = "Currently Available DownHill Bikes To Rent";
+            case "2.3": return lblUsrSelected.Text = "Currently Available Kids Bikes To Rent";
 
             case "3": return lblUsrSelected.Text = "Currently Rented Bikes";
             case "3.1": return lblUsrSelected.Text = "Currently Rented Satori Bikes";
-            case "3.2": return lblUsrSelected.Text = "Currently Rented Process Bikes";
-            case "3.3": return lblUsrSelected.Text = "Currently Rented DownHill Bikes";
-            case "3.4": return lblUsrSelected.Text = "Currently Rented Kids Bikes";
+            //case "3.2": return lblUsrSelected.Text = "Currently Rented Process Bikes";
+            case "3.2": return lblUsrSelected.Text = "Currently Rented DownHill Bikes";
+            case "3.3": return lblUsrSelected.Text = "Currently Rented Kids Bikes";
 
             case "4": return lblUsrSelected.Text = "Most Popular Bikes Rented";
-            case "4.1": return "";//spGetMostPopularSatori
-            case "4.2": return "";//spGetMostPopularProcess
-            case "4.3": return "";//spGetMostPopularDh
-            case "4.4": return "";//spGetMostPopularKids
+            case "4.1": return "spGetMostPopularSatori";
+            //case "4.2": return "spGetMostPopularProcess";
+            case "4.2": return "spGetMostPopularDh";
+            //case "4.3": return "";//spGetMostPopularKids
 
             case "5": return "";//Out of Action
 
@@ -108,21 +108,21 @@ public partial class Default2 : System.Web.UI.Page
 
             case "2": return "spGetCurrAvail";
             case "2.1": return "spGetCurrAvailSatori";
-            case "2.2": return "";//spGetCurrAvailProcess
-            case "2.3": return "spGetCurrAvailDh";
-            case "2.4": return "spGetCurrAvailKids";
+            //case "2.2": return "";//spGetCurrAvailProcess
+            case "2.2": return "spGetCurrAvailDh";
+            case "2.3": return "spGetCurrAvailKids";
 
             case "3": return "spGetCurrRented";
             case "3.1": return "spGetCurrRentedSatori";
-            case "3.2": return "";//spGetCurrRentedProcess
-            case "3.3": return "spGetCurrRentedDh";
-            case "3.4": return "spGetCurrRentedKids";
+            //case "3.2": return "";//spGetCurrRentedProcess
+            case "3.2": return "spGetCurrRentedDh";
+            case "3.3": return "spGetCurrRentedKids";
 
             case "4": return "spGetMostPopular";
-            case "4.1": return "";//spGetMostPopularSatori
-            case "4.2": return "";//spGetMostPopularProcess
-            case "4.3": return "";//spGetMostPopularDh
-            case "4.4": return "";//spGetMostPopularKids
+            case "4.1": return "spGetMostPopularSatori";
+            //case "4.2": return "spGetMostPopularProcess";
+            case "4.2": return "spGetMostPopularDh";
+            //case "4.3": return "spGetMostPopularKids";
 
             case "5": return "";//Out of Action
 
