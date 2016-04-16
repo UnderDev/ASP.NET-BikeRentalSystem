@@ -89,8 +89,6 @@ public partial class Default2 : System.Web.UI.Page
             case "5": return "spGetOutOfAction";//Out of Action
 
             case "6": return lblUsrSelected.Text = "Income Per Bike Model and Total from Rentals";
-            case "7": return "";
-
             default: return "Default";
         }
     }
@@ -124,7 +122,7 @@ public partial class Default2 : System.Web.UI.Page
             case "4.2": return "spGetMostPopularDh";
             //case "4.3": return "spGetMostPopularKids";
 
-            case "5": return "";//Out of Action
+            case "5": return "spGetOutOfAction";//Out of Action
 
             case "6": return "spGetIncome";
             case "7": return "";
