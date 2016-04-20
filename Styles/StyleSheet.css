@@ -1,13 +1,7 @@
 ﻿
 .BackGround
 {
-    margin-left: auto;
-    margin-right: auto;
-    background: #E0EAFC; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#CFDEF3,#E0EAFC); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#CFDEF3,#E0EAFC); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#CFDEF3,#E0EAFC); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#CFDEF3,#E0EAFC); /* Standard syntax */
+    background-color: #F2FFF2;
 }
 
 .BannerBoarder
@@ -20,67 +14,71 @@
     height: 100%;
 }
 
-.BannerImage
+.BannerBoarder #bp, #ire
 {
-    width: 800px;
-    height: 120px;
+    font-family: Rockwell;
+    font-size: 80px;
+    font-weight: lighter;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    width: inherit;
+    height: 55px;
+    word-spacing: 2px;
+    letter-spacing: .3em;
+    margin-top: 0;
+     margin-bottom: 40px;
+}
+.BannerBoarder #ire
+{
+    color: #DDDD04;
 }
 
-
-.Footer
+.BarCodeEntryBg
 {
-    background-color: #996633;
-    height: 50px;
+    padding-top:100px; 
+}
+
+.SignInStyle
+{
+    font-family: 'Bell MT';
+    font-size: larger;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    color: #FFFFFF;
 }
 
 
 .Header
 {
-    height: auto;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:5px;
+    background-color: #339933;
+    vertical-align:middle; 
 }
 
-.WebSiteBorder
-{
-    border: medium solid #000000;
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-
-.ContentBackGround
-{
-    width: 1120px;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FFFFFF;
-    box-shadow: 0 10px 20px #000;
-    padding-top: 5px;
-}
+  table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
 
 .ContentPlaceHolder
 {
     text-align: center;
+    margin-top:50px;
     margin-left: auto;
     margin-right: auto;
     width: 900px;
     vertical-align: top;
+    height:100%;
 }
 
-.LoginStatusBar
+
+.GridBackGround
 {
-    margin:auto;   
-    width:1110px;
+    margin-top:10px;
+    
 }
-
-
-
 
 .GridLbl
 {
@@ -88,18 +86,9 @@
     font-size: x-large;
     text-transform: capitalize;
     font-variant: small-caps;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
-.NavBarLeft
-{
-    width: 250px;
-    height: 750px;
-    border-right: thin solid #996633;
-    background-color: #EAFFEB;
-    vertical-align: top;
-    text-align: center;
-}
 
 .box
 {
@@ -174,33 +163,17 @@
     color: #333;
 }
 
-.CenterAll
-{
-    margin: auto;
-}
-
-.alignLeft
-{
-    float: left;
-}
-
-.XlrgText li
-{
-    font-size: x-large;
-}
-
-
 
 .GridViewCss
 {
     margin-left: auto;
     margin-right: auto;
     width:100%;
+    box-shadow: 0 0 20px #000;
 }
 
 .GridViewCss th
 {
-    background-color: #83541B;
     font-family: 'Tekton Pro Ext';
     font-size: large;
     text-transform: capitalize;
@@ -209,14 +182,41 @@
 }
 
 .GridViewCss td
-{
-    background-color: #F5E7CD;
+{   
     font-family: 'Tekton Pro Ext';
     font-size: large;
     text-transform: capitalize;
     font-variant: small-caps;
     color: #267326;
 }
+
+.GridRowStyle
+{
+   background-color: #F5E7CD; 
+}
+
+.GridAltRowStyle
+{
+    background-color: #FBF5EC;
+}
+
+.GridPagerStyle
+{
+    background-color: #83541B;
+}
+.GridPagerStyle a
+{
+    margin-left: 15px;
+    color: #FFFFFF;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.GridHeaderStyle
+{
+    background-color: #83541B;
+}
+
 
 
 

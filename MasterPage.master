@@ -7,64 +7,42 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="Styles/StyleSheet.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        .style1
-        {
-            width: 75px;
-        }
-    </style>
+
 </head>
 <body class="BackGround">
     <form id="form1" runat="server">
     <div class="BannerBoarder">
-        <img class="BannerImage" src="../Assets/BPI_Logo.png" alt="BIKE PARK IRELAND" />
+            <p id="bp">BikePark <span id="ire">Ireland</span> </p>
     </div>
-    <div class="Header">
-        <table class="LoginStatusBar" cellspacing="1px">
+    <div class="Header"> 
+        <table class="center">
             <tr>
-                <td class="style1">
-                    Welcome
-                </td>
                 <td>
-                    <div style='text-transform: uppercase'>
-                        <asp:LoginName ID="LoginName1" runat="server" />
-                    </div>
+                <asp:Menu ID="mNavHeader" runat="server" Orientation="Horizontal" CssClass="NavMenu" RenderingMode="Table" StaticEnableDefaultPopOutImage="False">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/AdminPages/Home.aspx" Text="Home" Value="Home"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminPages/BarCodeEntry.aspx" Text="Barcode Entry" Value="Barcode Entry">
+                        </asp:MenuItem>
+                    </Items>
+
+                    <StaticMenuItemStyle VerticalPadding="10px"></StaticMenuItemStyle>
+                    <StaticMenuItemStyle CssClass="MenuBoxDesign" ItemSpacing="10px" Width="200px" />
+                    <StaticHoverStyle CssClass="MenuBoxHover" />
+               </asp:Menu>
+
                 </td>
-                <td width="700">
-                </td>
-                <td>
-                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Account/LogIn.aspx"
-                        LoginText="Sign In" LogoutText="Sign Out" />
+                <td >
+                    <asp:LoginStatus ID="lsLogInStatus" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Account/LogIn.aspx"
+                        LoginText="Sign In" LogoutText="Sign Out" CssClass="SignInStyle" />
                 </td>
             </tr>
         </table>
     </div>
-    <div class="ContentBackGround">
-        <table>
-            <tr>
-                <td class="NavBarLeft">
-                    <table class="CenterAll XlrgText" cellpadding="10">
-                        <tr>
-                            <td>
-                                <asp:Menu ID="Menu1" runat="server" StaticMenuItemStyle-VerticalPadding="10px">
-                                    <Items>
-                                        <asp:MenuItem NavigateUrl="~/AdminPages/Home.aspx" Text="Home" Value="Home"></asp:MenuItem>
-                                        <asp:MenuItem NavigateUrl="~/AdminPages/BarCodeEntry.aspx" Text="Barcode Entry" Value="Barcode Entry">
-                                        </asp:MenuItem>
-                                    </Items>
-                                    <StaticMenuItemStyle VerticalPadding="10px"></StaticMenuItemStyle>
-                                </asp:Menu>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td class="ContentPlaceHolder">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-                </td>
-            </tr>
-        </table>
+    <div class="ContentPlaceHolder">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
     </div>
+
     </form>
 </body>
 </html>

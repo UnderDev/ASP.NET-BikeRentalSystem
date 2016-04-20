@@ -44,19 +44,8 @@ public partial class Default2 : System.Web.UI.Page
         //Cache the DataSet for use later on in Pagging/Sorting
         Cache["Data"] = ds;
 
-        GridView2.DataSource = ds;
-
-        //BoundField Col1 = new BoundField();
-        //Col1.HeaderText = "Date";
-        //Col1.DataField = "Date";
-        //Col1.DataFormatString = "{0:D}";
-        //BoundField Col2 = new BoundField();
-        //Col2.DataField = "Total";
-        //Col2.DataFormatString = "{0:c}";
-        //GridView2.Columns.Add(Col1);
-        ////grdTest.Columns.Add(Col2);
-        //GridView2.Columns.Add(Col2);
-        GridView2.DataBind();
+        gvBikeGrid.DataSource = ds;
+        gvBikeGrid.DataBind();
     }
 
     /* Switches on a String(menu.SelectedItem.Value) and returns a message based on what the user
@@ -136,10 +125,17 @@ public partial class Default2 : System.Web.UI.Page
      */
     private void BuildGridSettings()
     {
-        GridView2.PageSize = 10;
-        GridView2.AllowPaging = true;
-        GridView2.PageIndex = 0;
-        GridView2.AllowSorting = false;
+        gvBikeGrid.PageSize = 10;
+        gvBikeGrid.AllowPaging = true;
+        gvBikeGrid.PageIndex = 0;
+        gvBikeGrid.AllowSorting = false;
+
+        //Setting up the CSS  for the Grid
+        gvBikeGrid.PagerStyle.CssClass = "GridPagerStyle";
+        gvBikeGrid.RowStyle.CssClass = "GridRowStyle";
+        gvBikeGrid.AlternatingRowStyle.CssClass = "GridAltRowStyle";
+        gvBikeGrid.HeaderStyle.CssClass = "GridHeaderStyle";
+        gvBikeGrid.PagerSettings.Mode = PagerButtons.NextPreviousFirstLast;   
     }
 
 
@@ -147,11 +143,11 @@ public partial class Default2 : System.Web.UI.Page
      * Then sets the Grids Datasource to the Cached DataSet created when the user click on the menu
      * And Binds the data to the grid. updating its view
      */
-    protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvBikeGrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        GridView2.PageIndex = e.NewPageIndex;
-        GridView2.DataSource = (DataSet)Cache["Data"];
-        GridView2.DataBind();
+        gvBikeGrid.PageIndex = e.NewPageIndex;
+        gvBikeGrid.DataSource = (DataSet)Cache["Data"];
+        gvBikeGrid.DataBind();
     }
 
 }

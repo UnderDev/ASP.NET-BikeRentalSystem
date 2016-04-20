@@ -41,13 +41,20 @@
         </asp:Menu>
     <br />
 
+    <div class="GridBackGround">
     <asp:SqlDataSource ID="SqlDataSourceRental" runat="server" ConnectionString="<%$ ConnectionStrings:BPIConnectionString %>"
         SelectCommand="SELECT [BarCode], [TimesRented], [TimeInOut], [Total], [Date] FROM [BikeRentalTbl]">
     </asp:SqlDataSource>
-    <asp:Label ID="lblUsrSelected" runat="server" CssClass="GridLbl"></asp:Label>
-    <div>
-        <asp:GridView ID="GridView2" runat="server" 
-            onpageindexchanging="GridView2_PageIndexChanging" CssClass="GridViewCss">
+
+    <div class="GridLbl">
+        <asp:Label ID="lblUsrSelected" runat="server"></asp:Label>
+    </div>
+    
+        <asp:GridView ID="gvBikeGrid" runat="server" 
+            onpageindexchanging="gvBikeGrid_PageIndexChanging" CssClass="GridViewCss" >
+            <PagerSettings FirstPageText="First" LastPageText="Last" NextPageText="Next" 
+                PreviousPageText="Previous" />
+            <PagerStyle HorizontalAlign="Center" VerticalAlign="Middle" />
         </asp:GridView>
    </div>
 </asp:Content>
