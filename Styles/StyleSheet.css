@@ -37,7 +37,14 @@
 
 .BarCodeEntryBg
 {
-    padding-top:100px; 
+    margin-left:auto;
+    margin-right:auto;
+    border: thin solid #000000;
+    margin-top: 100px;
+    width: 400px;
+    height: 150px;
+    box-shadow: 0 0 20px #000;
+    padding-top:50px;
 }
 
 .SignInStyle
@@ -124,7 +131,7 @@
     margin-top: 100px;
     background: green;
     border-radius: 7px;
-    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 20px #000;
 }
 
 .LogInBox h1
@@ -151,9 +158,9 @@
     border: thin solid #FFFFFF;
     margin: 10px auto;
     padding: 10px;
-    background: #83541B;
+    background: #A46922;
     outline: none;
-    color: #FFBF00;
+    color: #FFFFFF;
     font-weight: 700;
     letter-spacing: 0.125em;
     text-align: center;
@@ -163,8 +170,8 @@
 
 .Loginbtn:hover
 {
-    background: #FFBF00;
-    color: #83541B;
+    background: #F2FFF2;
+    color: Green;
 }
 
 
@@ -276,8 +283,7 @@
 .MenuBoxHome
 {
     border: thin solid #003300;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    border-radius: 5px;
     background-color: #009933;
     text-align: center;
     vertical-align: middle;
@@ -286,9 +292,10 @@
     font-variant: small-caps;
     color: #FFFFFF;
     font-size: large;
-    width: 160px;
+    width: 180px;
     height: 40px;
-    display: inline-block;
+    display:table;
+    margin-bottom:5px;  
 }
 
 .MenuBoxHome a
@@ -297,6 +304,11 @@
     padding-top:10px;
 }
 
+.MenuBoxSubBack
+{
+     margin-top:5px;
+}
+  
 
 .MenuBoxHomeHover
 {

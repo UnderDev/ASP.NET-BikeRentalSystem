@@ -12,18 +12,23 @@ public partial class Default2 : System.Web.UI.Page
     private static SqlConnection _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BPIConnectionString"].ConnectionString);
     private static SqlCommand _com;
 
-
     protected void Page_Load(object sender, EventArgs e)
     {
         txtBoxBcEntry.Focus();
     }
 
+    /*Method waites for the Text in the textbox to be changed, once the event fires off, it checks the contents of the textbox
+     * against the database to see if the Barcode was found. If not , it displayes a message to the user and waites for more input.
+     * if the code is found it calls all the listed methods to update the database with the new data.
+     */
     protected void txtBoxBcEntry_TextChanged(object sender, EventArgs e)
     {
         int rentCount, hoursRented;
         double rentCost, total;
         string timeInOut;
         DateTime dateTime;
+
+        lblUserMessage.Text = "";
 
         if (IsPostBack)
         {
@@ -86,35 +91,33 @@ public partial class Default2 : System.Web.UI.Page
             _conn.Close();
         }//End IsPostBack
 
-        //Navigate back to the same Page FIX!!!
-        //Server.Transfer("Default.aspx", true);
-        Response.Redirect("../AdminPages/BarCodeEntry.aspx", true);
-
-    }//End txtBoxBcEntry_TextChanged();
-
+        txtBoxBcEntry.Text = "";
+    }
 
     /* Gets the Scanned input from the user and compares it against the dataBase
      * returning True if the BarCode was found */
     private bool get_BarCode(string barcode)
     {
         string result = "";
-        bool check = false;
+        bool checkBarCode = false;
         String chkBarCode = "Select BarCode from BikeRentalTbl where BarCode  ='" + barcode + "'";
 
         _com = new SqlCommand(chkBarCode, _conn);
 
         try
         {
-            //If the barcode was found in the database result will be = to that barcode else an empty string
+            //If the barcode was found in the database result will be = to that barcode otherwise it will be an empty string
             result = Convert.ToString(_com.ExecuteScalar().ToString());
-            check = true;
+            checkBarCode = true;
+            lblUserMessage.Text = "BarCode Found!";
         }
         catch (Exception)
         {
-            check = false;
+            checkBarCode = false;
+            lblUserMessage.Text = "The Barcode You Entered Could Not Be Found!";
         }
 
-        return check;
+        return checkBarCode;
     }
 
     /*Updates the DataBase with the Current Date
@@ -126,7 +129,6 @@ public partial class Default2 : System.Web.UI.Page
         _com = new SqlCommand(curDate, _conn);
         _com.ExecuteScalar();
     }
-
 
     /*Gets the Current DateTime in the format "MM/dd/yyyy HH:mm:ss"
      * and returns it as a string to the caller
@@ -151,7 +153,6 @@ public partial class Default2 : System.Web.UI.Page
         //Gets The amount of Hours The Bikes Been Rented for     (messes up the time if its accross days)*******************
         return hours = diff2.Hours;
     }
-
 
     /*Gets the TimeInOut data from the DataBase
   * and returns the result as a string to the caller
