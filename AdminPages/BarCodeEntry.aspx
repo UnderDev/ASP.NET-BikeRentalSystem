@@ -4,12 +4,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <div class="BarCodeEntryBg">
-   <p> Enter The Bikes Barcode Below</p>
-
-    <asp:TextBox ID="txtBoxBcEntry" runat="server" OnTextChanged="txtBoxBcEntry_TextChanged"
-        ViewStateMode="Enabled" Height="25px"></asp:TextBox>
-
- </div>
+        <p>
+            Enter The Bikes Barcode Below</p>
+            <asp:TextBox ID="txtBoxBcEntry" runat="server" OnTextChanged="txtBoxBcEntry_TextChanged"
+                ViewStateMode="Enabled" Height="25px" Width="250px"></asp:TextBox>
+           <br /> <br />
+           <asp:Label ID="lblUserMessage" runat="server" ></asp:Label>
+     </div>
 </asp:Content>

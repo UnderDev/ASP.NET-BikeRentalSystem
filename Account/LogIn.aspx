@@ -9,7 +9,8 @@
         <LayoutTemplate>
             <div class="LogInBox">
                     <h1>Authentication Required</h1>
-                    <asp:TextBox class="TxtBoxInput" placeholder="UserName" ID="UserName" runat="server"></asp:TextBox>
+                    <asp:TextBox class="TxtBoxInput" placeholder="UserName" ID="UserName" 
+                        runat="server" Height="44px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
                         ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="vgLogin"
                         ForeColor="#FEF200" Display="Dynamic">*</asp:RequiredFieldValidator>
