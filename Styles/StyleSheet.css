@@ -50,13 +50,6 @@
 }
 
 
-.Header
-{
-    width: 100%;
-    background-color: #339933;
-    vertical-align:middle; 
-}
-
   table.center {
     margin-left:auto; 
     margin-right:auto;
@@ -87,18 +80,6 @@
     text-transform: capitalize;
     font-variant: small-caps;
     margin-bottom: 15px;
-}
-
-
-.box
-{
-    width: 280px;
-    height: auto;
-    margin: 0 auto;
-    margin-top: 100px;
-    background: green;
-    border-radius: 7px;
-    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
 }
 
 .content
@@ -135,33 +116,58 @@
     font-size: medium;
 }
 
-.btn
+.LogInBox
 {
+    width: 280px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    background: green;
+    border-radius: 7px;
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
+}
+
+.LogInBox h1
+{
+    padding-top: 20px;
+    font-family: rockwell;
+    color: #FFFFFF;
+    font-size: xx-large;
+    font-variant: small-caps;
+    text-transform: capitalize;
+}
+
+.LogInBox div
+{
+    font-family: rockwell;
+    color: #DFDF00;
+    font-size: large;
+    font-variant: small-caps;
+    text-transform: capitalize;
+}
+
+.Loginbtn
+{
+    border: thin solid #FFFFFF;
     margin: 10px auto;
     padding: 10px;
     background: #83541B;
-    border: none;
-    box-shadow: 0px 1px 0px 0px #111;
-    border-radius: 10px;
     outline: none;
     color: #FFBF00;
     font-weight: 700;
     letter-spacing: 0.125em;
     text-align: center;
     text-transform: uppercase;
+    border-radius: 5px;
 }
 
-.btn:hover
+.Loginbtn:hover
 {
     background: #FFBF00;
-    color: #333;
+    color: #83541B;
 }
 
-.btn:active
-{
-    background: #FACC2E;
-    color: #333;
-}
+
 
 
 .GridViewCss
@@ -220,6 +226,14 @@
 
 
 
+.Header
+{
+    width: 100%;
+    height:50px;
+    background-color: #339933;
+    vertical-align:middle; 
+}
+
 
 .Menu
 {
@@ -230,32 +244,65 @@
 
 .MenuBoxDesign
 {
-    padding: 5px;
-    border: thin solid #000000;
+    border: thin solid #FFFFFF;
     border-radius: 5px;
-    background-color: #009933;
+
+    background-color: #A67C00;
     text-align: center;
-       
+    vertical-align: middle;
     font-family: Cambria;
     font-weight: bold;
     font-variant: small-caps;
     color: #FFFFFF;
     font-size: large;
+    width: 150px;
+    height: 40px;
+    display: inline-block;
+}
+
+.MenuBoxDesign a
+{
+    height:inherit;
+    padding-top:10px;
 }
 
 .MenuBoxHover
 {
-    background-color: #FFFF00;
+    background-color: #F2FFF2;
     color: #009933;   
 }
 
-.MenuBoxSubBack
+
+.MenuBoxHome
 {
-   background: inherit;
+    border: thin solid #003300;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: #009933;
+    text-align: center;
+    vertical-align: middle;
+    font-family: Cambria;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: #FFFFFF;
+    font-size: large;
+    width: 160px;
+    height: 40px;
+    display: inline-block;
+}
+
+.MenuBoxHome a
+{
+    height:inherit;
+    padding-top:10px;
 }
 
 
-
+.MenuBoxHomeHover
+{
+    background-color: #DDDD04;
+    color: #009933;   
+}
 
 
 

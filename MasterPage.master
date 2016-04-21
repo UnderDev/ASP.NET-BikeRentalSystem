@@ -23,10 +23,8 @@
                         <asp:MenuItem NavigateUrl="~/AdminPages/Home.aspx" Text="Home" Value="Home"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/AdminPages/BarCodeEntry.aspx" Text="Barcode Entry" Value="Barcode Entry">
                         </asp:MenuItem>
-                    </Items>
-
-                    <StaticMenuItemStyle VerticalPadding="10px"></StaticMenuItemStyle>
-                    <StaticMenuItemStyle CssClass="MenuBoxDesign" ItemSpacing="10px" Width="200px" />
+                    </Items>                  
+                    <StaticMenuItemStyle CssClass="MenuBoxDesign" ItemSpacing="10px"/>
                     <StaticHoverStyle CssClass="MenuBoxHover" />
                </asp:Menu>
 

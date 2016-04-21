@@ -8,9 +8,10 @@
 
         <asp:Menu ID="QueryMenu" runat="server" Orientation="Horizontal" CssClass="Menu" 
             onmenuitemclick="Menu1_MenuItemClick" RenderingMode="Table" 
-            StaticEnableDefaultPopOutImage="False" >
-            <DynamicHoverStyle CssClass="MenuBoxHover" />
-            <DynamicMenuItemStyle CssClass="MenuBoxDesign" />
+            StaticEnableDefaultPopOutImage="False">
+            <DynamicHoverStyle CssClass="MenuBoxHomeHover" />
+            <DynamicMenuItemStyle CssClass="MenuBoxHome" HorizontalPadding="0px" 
+                ItemSpacing="5px" VerticalPadding="0px" />
             <DynamicMenuStyle CssClass="MenuBoxSubBack" />
             <Items>
                 <asp:MenuItem Selected="True" Text="Show DataBase" Value="1">
@@ -36,8 +37,9 @@
                     <asp:MenuItem Text="Income" Value="6"></asp:MenuItem>
                 </asp:MenuItem>
             </Items>
-            <StaticHoverStyle CssClass="MenuBoxHover" />
-            <StaticMenuItemStyle CssClass="MenuBoxDesign" />
+            <StaticHoverStyle CssClass="MenuBoxHomeHover" />
+            <StaticMenuItemStyle CssClass="MenuBoxHome" />
+            <StaticMenuStyle CssClass="MenuBoxSubBack" />
         </asp:Menu>
     <br />
 
