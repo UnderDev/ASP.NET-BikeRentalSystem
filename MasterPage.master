@@ -21,8 +21,8 @@
                 <asp:Menu ID="mNavHeader" runat="server" Orientation="Horizontal" CssClass="NavMenu" RenderingMode="Table" StaticEnableDefaultPopOutImage="False">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/AdminPages/Home.aspx" Text="Home" Value="Home"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminPages/BarCodeEntry.aspx" Text="Barcode Entry" Value="Barcode Entry">
-                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminPages/BarCodeEntry.aspx" Text="Barcode Entry" Value="Barcode Entry"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminPages/Administration.aspx" Text="Administration" Value="Admin"></asp:MenuItem>
                     </Items>                  
                     <StaticMenuItemStyle CssClass="MenuBoxDesign" ItemSpacing="10px"/>
                     <StaticHoverStyle CssClass="MenuBoxHover" />
@@ -31,7 +31,7 @@
                 </td>
                 <td >
                     <asp:LoginStatus ID="lsLogInStatus" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Account/LogIn.aspx"
-                        LoginText="Sign In" LogoutText="Sign Out" CssClass="SignInStyle" />
+                        LoginText="Sign In" LogoutText="Sign Out" CssClass="MenuBoxDesign" Height="30px" />
                 </td>
             </tr>
         </table>

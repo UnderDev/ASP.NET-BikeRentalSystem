@@ -6,10 +6,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-        <asp:Menu ID="QueryMenu" runat="server" Orientation="Horizontal" CssClass="Menu" 
+        <asp:Menu ID="QueryMenu" runat="server" Orientation="Horizontal" CssClass="MenuHome" 
             onmenuitemclick="Menu1_MenuItemClick" RenderingMode="Table" 
             StaticEnableDefaultPopOutImage="False" 
-            DynamicEnableDefaultPopOutImage="False" DynamicHorizontalOffset="5" 
+            DynamicEnableDefaultPopOutImage="False" DynamicHorizontalOffset="10" 
             DynamicPopOutImageTextFormatString="" >
             <DynamicHoverStyle CssClass="MenuBoxHomeHover" />
             <DynamicMenuItemStyle CssClass="MenuBoxHome" HorizontalPadding="0px" 
@@ -40,7 +40,7 @@
                 </asp:MenuItem>
             </Items>
             <StaticHoverStyle CssClass="MenuBoxHomeHover" />
-            <StaticMenuItemStyle CssClass="MenuBoxHome" ItemSpacing="5px" />
+            <StaticMenuItemStyle CssClass="MenuBoxHome" ItemSpacing="10px" />
         </asp:Menu>
     <br />
 

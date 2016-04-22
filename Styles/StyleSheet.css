@@ -28,7 +28,7 @@
     word-spacing: 2px;
     letter-spacing: .3em;
     margin-top: 0;
-     margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 .BannerBoarder #ire
 {
@@ -37,47 +37,37 @@
 
 .BarCodeEntryBg
 {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
     border: thin solid #000000;
     margin-top: 100px;
     width: 400px;
     height: 150px;
     box-shadow: 0 0 20px #000;
-    padding-top:50px;
+    padding-top: 50px;
 }
 
-.SignInStyle
+table.center
 {
-    font-family: 'Bell MT';
-    font-size: larger;
-    font-variant: small-caps;
-    text-transform: capitalize;
-    color: #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-
-  table.center {
-    margin-left:auto; 
-    margin-right:auto;
-  }
 
 .ContentPlaceHolder
 {
     text-align: center;
-    margin-top:50px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     width: 900px;
     vertical-align: top;
-    height:100%;
+    height: 100%;
 }
 
 
 .GridBackGround
 {
-    margin-top:10px;
-    
+    margin-top: 10px;
 }
 
 .GridLbl
@@ -181,7 +171,7 @@
 {
     margin-left: auto;
     margin-right: auto;
-    width:100%;
+    width: 100%;
     box-shadow: 0 0 20px #000;
 }
 
@@ -195,7 +185,7 @@
 }
 
 .GridViewCss td
-{   
+{
     font-family: 'Tekton Pro Ext';
     font-size: large;
     text-transform: capitalize;
@@ -205,7 +195,7 @@
 
 .GridRowStyle
 {
-   background-color: #F5E7CD; 
+    background-color: #F5E7CD;
 }
 
 .GridAltRowStyle
@@ -236,24 +226,17 @@
 .Header
 {
     width: 100%;
-    height:50px;
+    height: 50px;
     background-color: #339933;
-    vertical-align:middle; 
+    vertical-align: middle;
 }
 
 
-.Menu
-{
-    width: inherit;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 .MenuBoxDesign
 {
     border: thin solid #FFFFFF;
     border-radius: 5px;
-
     background-color: #A67C00;
     text-align: center;
     vertical-align: middle;
@@ -262,22 +245,36 @@
     font-variant: small-caps;
     color: #FFFFFF;
     font-size: large;
-    width: 150px;
+    width: 180px;
     height: 40px;
     display: inline-block;
 }
 
-.MenuBoxDesign a
+.MenuBoxDesign:hover
 {
-    height:inherit;
-    padding-top:10px;
+    background-color: #F2FFF2;
+    color: #009933;
+}
+
+.MenuBoxDesign a,#lsLogInStatus
+{
+    height: inherit;
+    padding-top: 10px;
 }
 
 .MenuBoxHover
 {
     background-color: #F2FFF2;
-    color: #009933;   
+    color: #009933;
 }
+
+
+.MenuHome
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 
 .MenuBoxHome
@@ -294,26 +291,26 @@
     font-size: large;
     width: 180px;
     height: 40px;
-    display:table;
-    margin-bottom:5px;  
+    display: table;
+    margin-bottom: 5px;
 }
 
 .MenuBoxHome a
 {
-    height:inherit;
-    padding-top:10px;
+    height: inherit;
+    padding-top: 10px;
 }
 
 .MenuBoxSubBack
 {
-     margin-top:5px;
+    margin-top: 5px;
 }
-  
+
 
 .MenuBoxHomeHover
 {
     background-color: #DDDD04;
-    color: #009933;   
+    color: #009933;
 }
 
 
