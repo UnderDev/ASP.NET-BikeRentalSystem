@@ -14,6 +14,7 @@ public partial class Default2 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Make sure the textBox always has focus
         txtBoxBcEntry.Focus();
     }
 
@@ -23,15 +24,18 @@ public partial class Default2 : System.Web.UI.Page
      */
     protected void txtBoxBcEntry_TextChanged(object sender, EventArgs e)
     {
-        int rentCount, hoursRented;
+        int rentCount;
+        TimeSpan timeRented;
         double rentCost, total;
         string timeInOut;
         DateTime dateTime;
+        int timeLeft = 0;
 
         lblUserMessage.Text = "";
 
         if (IsPostBack)
         {
+            _conn.Close();
             _conn.Open();
 
             //Gets the Scanned barcode entered into txtBoxBcEntry from the dataBase         
@@ -41,51 +45,78 @@ public partial class Default2 : System.Web.UI.Page
             //If The BarCode(pk) was found
             if (found)
             {
-
                 //Get The TimeInOut (DateTime) From the DB
                 timeInOut = get_TimeInOut(barCode);
 
-                //If the DateTime != "", bikes been returned (scanned twice)
-                if (!timeInOut.Equals(""))
+                TimeSpan checkReturn = get_DateDif(barCode);
+
+                //Prevent the bike been rented out for 5 min after been returned to prevent double scans and user errors
+                if (checkReturn.TotalMinutes > 5)
                 {
-                    dateTime = Convert.ToDateTime(timeInOut);
+                    //Bike is been returned
+                    if (!timeInOut.Equals(""))
+                    {
+                        dateTime = Convert.ToDateTime(timeInOut);
 
-                    //Gets the amount of hours a bike was rented
-                    hoursRented = getTimeDif(dateTime);
+                        //Gets diffrence between the current and database time
+                        timeRented = get_TimeDif(dateTime);
 
-                    //Gets how much the Rental Cost of the bike is
-                    rentCost = getRentalCost(barCode, hoursRented);
+                        //Prevents a bike been returned 5 min after it was rented
+                        if (timeRented.TotalMinutes > 5)
+                        {
+                            //Gets how much the Rental Cost of the bike is
+                            rentCost = getRentalCost(barCode, timeRented);
 
-                    //Get the total from the dataBase
-                    total = get_Total(barCode);
+                            //Get the total from the dataBase
+                            total = get_Total(barCode);
 
-                    //Add the total from the Db to the RentCost
-                    total += rentCost;
+                            //Add the total from the Db to the RentCost
+                            total += rentCost;
 
-                    //Updates the database with the new Total
-                    set_total(barCode, total);
+                            //Updates the database with the new Total
+                            set_total(barCode, total);
 
+                            //Gets and or Sets the date in the Database
+                            set_Date(barCode);
 
-                    //Gets and or Sets the date in the Database
-                    set_Date(barCode);
+                            //Gets the Rent Count from the Db, adds 1, then updates the Db with the new count
+                            rentCount = get_TimesRented(barCode);
+                            Set_TimesRented(barCode, rentCount);
 
+                            //Used to reset the field in timeInOut
+                            timeInOut = "NULL";
+                        }
+                        //Display a message to the user telling them how much time they have left until they can Return the bike again
+                        else
+                        {
+                            timeLeft = Convert.ToInt16(get_TimeDif(dateTime).TotalMinutes - 5.0);
+                            lblUserMessage.Text = "Bike Can not Be Returned For Another " + (Math.Abs(timeLeft)).ToString() + " Min";
+                        }
 
-                    //Gets the Rent Count from the Db, adds 1, then updates the Db with the new count
-                    rentCount = get_TimesRented(barCode);
-                    Set_TimesRented(barCode, rentCount);
+                    }
+                    //Bike Has Just Been Rented Out
+                    else
+                    {
+                        //Gets the Current dateTime now 
+                        timeInOut = Get_CurrentDateTime();
+                    }
 
-                    //Used to reset the field in timeInOut
-                    timeInOut = "NULL";
+                    if (!timeInOut.Equals("NULL"))
+                    {
+                        //Makes sure the Date time is in the correct formate
+                        DateTime temp = Convert.ToDateTime(timeInOut);
+                        timeInOut = Convert.ToString(temp.ToString("MM/dd/yyyy HH:mm:ss"));
+                    }
+
+                    //Update the DB with new timeInOut or the Current time in out if bie was scanned twice by mistake
+                    set_TimeInOut(barCode, timeInOut);
                 }
-                //Bike Has Just Been Rented Out
+                //Display a message to the user telling them how much time they have left untill they can rent the bike again
                 else
                 {
-                    //Gets the Current dateTime now 
-                    timeInOut = Get_CurrentDateTime();
+                    timeLeft = Convert.ToInt16(checkReturn.TotalMinutes - 5.0);
+                    lblUserMessage.Text = "Bike Can Not Be Rented For Another " + Math.Abs(timeLeft) + " Min";
                 }
-
-                //Update the DB with new timeInOut
-                set_TimeInOut(barCode, timeInOut);
 
             }//End if(found)
             _conn.Close();
@@ -94,26 +125,45 @@ public partial class Default2 : System.Web.UI.Page
         txtBoxBcEntry.Text = "";
     }
 
+    private TimeSpan get_TimeDif(DateTime DateTimeDb)
+    {
+        DateTime currDateTime = (DateTime.Now);
+        //Get the Time Diffrence between the Current DateTime and Database DateTime
+        System.TimeSpan diff2 = (currDateTime - DateTimeDb);
+
+        //Gets the time diffrence between 2 dates
+        return diff2;
+    }
+
+
+
     /* Gets the Scanned input from the user and compares it against the dataBase
-     * returning True if the BarCode was found */
+     * returning True if the BarCode was found and the BcInUse value returned was Y*/
     private bool get_BarCode(string barcode)
     {
-        string result = "";
-        bool checkBarCode = false;
-        String chkBarCode = "Select BarCode from BikeRentalTbl where BarCode  ='" + barcode + "'";
-
-        _com = new SqlCommand(chkBarCode, _conn);
+        bool checkBarCode = false;//default value
 
         try
         {
-            //If the barcode was found in the database result will be = to that barcode otherwise it will be an empty string
-            result = Convert.ToString(_com.ExecuteScalar().ToString());
-            checkBarCode = true;
-            lblUserMessage.Text = "BarCode Found!";
+
+            String checkInAction = "Select BcInUse from BikeRentalTbl where BarCode  ='" + barcode + "'";
+            _com = new SqlCommand(checkInAction, _conn);
+            checkInAction = Convert.ToString(_com.ExecuteScalar().ToString());
+
+            if (checkInAction.Equals("Y"))
+            {
+                String chkBarCode = "Select BarCode from BikeRentalTbl where BarCode  ='" + barcode + "'";
+                _com = new SqlCommand(chkBarCode, _conn);
+                //If the barcode was found in the database result will be = to that barcode otherwise it will be an empty string
+                string result = Convert.ToString(_com.ExecuteScalar().ToString());
+                checkBarCode = true;
+                lblUserMessage.Text = "BarCode Found!";
+            }
+            else
+                lblUserMessage.Text = "Bike not currently in Use";
         }
         catch (Exception)
         {
-            checkBarCode = false;
             lblUserMessage.Text = "The Barcode You Entered Could Not Be Found!";
         }
 
@@ -124,35 +174,42 @@ public partial class Default2 : System.Web.UI.Page
      */
     private void set_Date(String barCode)
     {
-        String curDate = "UPDATE BikeRentalTbl SET Date= '" + Get_CurrentDateTime() + "' where BarCode ='" + barCode + "'";
+        DateTime temp = Convert.ToDateTime(Get_CurrentDateTime());
+        String dateTime = Convert.ToString(temp.ToString("MM/dd/yyyy HH:mm:ss"));
+
+        String curDate = "UPDATE BikeRentalTbl SET Date= '" + dateTime + "' where BarCode ='" + barCode + "'";
 
         _com = new SqlCommand(curDate, _conn);
         _com.ExecuteScalar();
     }
 
-    /*Gets the Current DateTime in the format "MM/dd/yyyy HH:mm:ss"
-     * and returns it as a string to the caller
+    /*Gets the Current DateTime 
      */
     private String Get_CurrentDateTime()
     {
-        string dateTimeNow = Convert.ToString(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
+        string dateTimeNow = Convert.ToString(DateTime.Now);
 
         return dateTimeNow;
     }
 
-    //FIX
-    private int getTimeDif(DateTime DateTimeDb)
+    private TimeSpan get_DateDif(string barCode)
     {
-        int hours;
+        String date = "Select Date from BikeRentalTbl where BarCode ='" + barCode + "'";
 
+        _com = new SqlCommand(date, _conn);
+        date = Convert.ToString(_com.ExecuteScalar());
+
+        DateTime tempDate = Convert.ToDateTime(date);
         DateTime currDateTime = (DateTime.Now);
-        //Get the Time Diffrence between the Current DateTime and Database DateTime
 
-        System.TimeSpan diff2 = (currDateTime - DateTimeDb);
+        //Get the Time Diffrence between the Current DateTime and Database DateTime
+        System.TimeSpan timeDif = (currDateTime - tempDate);
 
         //Gets The amount of Hours The Bikes Been Rented for     (messes up the time if its accross days)*******************
-        return hours = diff2.Hours;
+        return timeDif;
     }
+
+
 
     /*Gets the TimeInOut data from the DataBase
   * and returns the result as a string to the caller
@@ -210,16 +267,16 @@ public partial class Default2 : System.Web.UI.Page
     /*Gets the "RentalCost" based on the the amount of hours the bike was 
      * Rented out for and returns an int to the caller
      */
-    private int getRentalCost(string barCode, int hours)
+    private int getRentalCost(string barCode, TimeSpan hours)
     {
         int price = 0;
-        string priceQuere="";
+        string priceQuere = "";
         int bikeModelNum = Convert.ToInt32(barCode.Substring(3, 1));
 
         //if the Time dif is greater than 1 hour rented and < than 5 hours its a Half Day
-        if (hours >= 0 && hours <= 5)
+        if (hours.TotalHours >= 0 && hours.TotalHours <= 5)
             priceQuere = "Select HalfDay from BikeCostTbl where Id ='" + bikeModelNum + "'";
-        else if (hours >= 1 && hours > 5)
+        else if (hours.TotalHours >= 1 && hours.TotalHours > 5)
             priceQuere = "Select FullDay from BikeCostTbl where Id ='" + bikeModelNum + "'";
 
         _com = new SqlCommand(priceQuere, _conn);
