@@ -28,7 +28,9 @@ public partial class Default2 : System.Web.UI.Page
         TimeSpan timeRented;
         double rentCost, total;
         string timeInOut;
-        DateTime dateTime;
+        DateTime dateTime ;
+        int timeLeft = 0;
+        TimeSpan checkReturn = new TimeSpan(0,6,0);
 
         lblUserMessage.Text = "";
 
@@ -47,6 +49,18 @@ public partial class Default2 : System.Web.UI.Page
                 //Get The TimeInOut (DateTime) From the DB
                 timeInOut = get_TimeInOut(barCode);
 
+                String date = get_Date(barCode);
+
+                if (!date.Equals(""))
+                {
+                    dateTime = Convert.ToDateTime(date);
+                    checkReturn = get_TimeDif(dateTime);
+                }
+
+                //Prevents the bike been rented again until 5 min has passed from when it was returned, other wise the bike can be rented.
+                if (checkReturn.TotalMinutes > 5)
+                {
+                    //Bike is been returned
                     if (!timeInOut.Equals(""))
                     {
                         dateTime = Convert.ToDateTime(timeInOut);
@@ -54,6 +68,9 @@ public partial class Default2 : System.Web.UI.Page
                         //Gets diffrence between the current and database time
                         timeRented = get_TimeDif(dateTime);
 
+                        //Prevents a bike been returned 5 min after it was rented
+                        if (timeRented.TotalMinutes > 5)
+                        {
                             //Gets how much the Rental Cost of the bike is
                             rentCost = getRentalCost(barCode, timeRented);
 
@@ -73,11 +90,20 @@ public partial class Default2 : System.Web.UI.Page
                             rentCount = get_TimesRented(barCode);
                             Set_TimesRented(barCode, rentCount);
 
+
                             //Statment makes sure the bike gets rented again after it was not scanned back
-                            if (timeRented.TotalHours >=13)
+                            if (timeRented.TotalHours >= 13)
                                 timeInOut = Get_CurrentDateTime();
                             else
                                 timeInOut = "NULL";//Used to reset the field in timeInOut
+                        }
+                        //Display a message to the user telling them how much time they have left until they can Return the bike again
+                        else
+                        {
+                            timeLeft = Convert.ToInt16(get_TimeDif(dateTime).TotalMinutes - 5.0);
+                            lblUserMessage.Text = "Bike Can't Be Returned For Another " + (Math.Abs(timeLeft)).ToString() + " Min";
+                        }
+
                     }
                     //Bike Has Just Been Rented Out
                     else
@@ -92,6 +118,13 @@ public partial class Default2 : System.Web.UI.Page
 
                     //Update the DB with new timeInOut or the Current time in out if bike was scanned twice by mistake
                     set_TimeInOut(barCode, timeInOut);
+                }
+                //Display a message to the user telling them how much time they have left untill they can rent the bike again
+                else
+                {
+                    timeLeft = Convert.ToInt16(checkReturn.TotalMinutes - 5.0);
+                    lblUserMessage.Text = "Bike Can't Be Rented For Another " + Math.Abs(timeLeft) + " Min";
+                }
 
             }//End if(found)
             _conn.Close();
@@ -169,19 +202,17 @@ public partial class Default2 : System.Web.UI.Page
 
     /*Method gets the Date field from the database
      */
-    private DateTime get_Date(string barCode)
+    private String get_Date(string barCode)
     {
         String date = "Select Date from BikeRentalTbl where BarCode ='" + barCode + "'";
         _com = new SqlCommand(date, _conn);
         date = Convert.ToString(_com.ExecuteScalar());
 
-        return Convert.ToDateTime(date);
+        return date;
     }
 
 
-    /*Gets the TimeInOut data from the DataBase
-  * and returns the result as a string to the caller
-  */
+    
     private String get_TimeInOut(string barCode)
     {
         String time = "Select TimeInOut from BikeRentalTbl where BarCode ='" + barCode + "'";
@@ -242,10 +273,12 @@ public partial class Default2 : System.Web.UI.Page
         int bikeModelNum = Convert.ToInt32(barCode.Substring(3, 1));
 
         //If the Time dif is greater than 30 min and less than 5 hours its a Half Day. This is also the default incase the bike never got scanned back in
-        if ((time.TotalMinutes >= 30 && time.TotalHours > 5) || (time.TotalDays >= 1 || time.TotalHours >= 19))
+        if ((time.TotalMinutes >= 30 && time.TotalHours <= 5) || (time.TotalDays >= 1 || time.TotalHours >= 19))
             priceQuere = "Select HalfDay from BikeCostTbl where Id ='" + bikeModelNum + "'";
-        else if ((time.TotalHours > 5 || time.TotalHours > 10) || time.TotalHours < 19)
+        else if ((time.TotalHours > 5 && time.TotalHours <= 10))
             priceQuere = "Select FullDay from BikeCostTbl where Id ='" + bikeModelNum + "'";
+        else
+            priceQuere = "Select HalfDay from BikeCostTbl where Id ='" + bikeModelNum + "'";
 
         _com = new SqlCommand(priceQuere, _conn);
         price = Convert.ToInt16(_com.ExecuteScalar());
