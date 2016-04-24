@@ -101,7 +101,6 @@ table.center
     margin: 10px auto;
     padding: 10px;
     background: #DDDDDD;
-    border: none;
     box-shadow: 0px 1px 0px 0px #111;
     border-radius: 5px;
     outline: none;
@@ -229,6 +228,28 @@ table.center
     height: 50px;
     background-color: #339933;
     vertical-align: middle;
+}
+
+.AdminToolsBg
+{
+    border-width: thin;
+    border-color: #000000;
+    box-shadow: 0 0 20px #000;
+    border-top-style: solid;
+    margin-top: 100px;
+    padding-bottom:50px;
+    
+}
+
+.AdminToolsBg input
+{
+    text-align:center;  
+}
+
+.AdminToolsBg select
+{
+    width:100px; 
+    text-align:center; 
 }
 
 
