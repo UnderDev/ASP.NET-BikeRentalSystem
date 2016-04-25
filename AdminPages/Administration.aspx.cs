@@ -34,7 +34,7 @@ public partial class AdminPages_Administration : System.Web.UI.Page
 
         //Check that the database was updated, if the command returns 1, a row has been updated, otherwise the string entered was not found in the database 
         if (checkUpdated == 1){
-            lblErrorMessage.Text = "Bike " + barcode + " Found! <br/> Successfully Updated the Bike In Use value to " + ddlBikeInUse.Text;
+            lblErrorMessage.Text = "Bike " + barcode + " Found! <br/> Successfully Updated the \"Bike In Use\" value to " + ddlBikeInUse.SelectedItem;
         }
         else{
             lblErrorMessage.Text = "Bike Not Found, Try Again";
