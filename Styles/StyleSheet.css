@@ -252,6 +252,15 @@ table.center
     text-align:center; 
 }
 
+.AdminToolsBg h3
+{
+    font-family: Rockwell;
+    font-size: large;
+    font-variant: small-caps;
+    color: #996633;
+    letter-spacing: .2em;
+    word-spacing: .1em;
+}
 
 
 .MenuBoxDesign
